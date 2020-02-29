@@ -24,21 +24,29 @@ JWT token is created for authentication incase of redirect to restricted area su
 **URL Params:**  `n/a`
 
 **Data Constraints:** 
-Provide username and password to be created. Password should be a string. 
-
-**_All fields are required_**
+Provide username and password to be created. Password should be a string.  
 
 ```
 {
-    "username": "[username]",
-    "password": "[password]"
+    "username": "[string max: 255 char]",
+    "password": "[string]"
 }
 
 ```
+
+**Data Example: ** **_All fields are required._**
+```
+{
+    "username": "testyMcTesty",
+    "password": "passWord1@3&8"
+}
+```
+
 ## Success Response
 
-- **Condition:**  `If no account existed for this User and everything is OK.`
-- **Code:**  `201 Created`
+**Condition:**  If no User account exists and everything is OK.
+
+**Code:**  `201 Created`
 # Login
 
 
