@@ -40,6 +40,7 @@ https://buildwk-4-bknd-prod-coreygumbs.herokuapp.com/api/"endpoint"
 
 ## API
 
+[Auth Endpoints  - Login, Register](./documentation/auth.md)
 
 ## Maintainers
 
