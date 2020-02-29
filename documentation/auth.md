@@ -12,8 +12,33 @@ All authentication endpoints are listed on this page.
 Creates a new user account if one does not already exists. Each username is unique and there can only be one account per username.
 JWT token is created for authentication incase of redirect to restricted area such as a dashboard, profile, etc.
 
+
 **URL:** `/api/register`
 
+**Method:** `POST`
+
+**Auth required:** `None`
+
+**Permissions required:** `None`
+
+**URL Params:**  `n/a`
+
+**Data Constraints:** 
+Provide username and password to be created. Password should be a string. 
+
+**_All fields are required_**
+
+```
+{
+    "username": "[username]",
+    "password": "[password]"
+}
+
+```
+## Success Response
+
+- **Condition:**  `If no account existed for this User and everything is OK.`
+- **Code:**  `201 Created`
 # Login
 
 
