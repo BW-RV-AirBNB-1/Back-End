@@ -18,10 +18,15 @@ describe("Server", () => {
             expect(res.status).toBe(200);
         });
 
-        it("Should return json", async () => {
+        it("Should return json body formatting ", async () => {
             const res = await request(server).get("/");
 
             expect(res.type).toMatch(/json/i);
+        })
+
+        it("Should return json message", async () => {
+            const res = await request(server).get("/");
+            expect(res.body.message).toMatch(/server working/i);
         })
 
     });
