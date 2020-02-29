@@ -1,6 +1,7 @@
 # RV Camping Air BnB API Documentation
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+
 TODO: Put more badges here.
 
 The API for RV Camping Air BnB.
@@ -27,8 +28,18 @@ API endpoints for accessing data for web and mobile applications.
 ```
 local deployment: localhost:5000/api/"endpoint"
 ```
+Staging Server: 
+```
+https://build-wk-4-backend-coreygumbs.herokuapp.com/api/"endpoint"
+```
+
+Production Server: 
+```
+https://buildwk-4-bknd-prod-coreygumbs.herokuapp.com/api/"endpoint"
+```
 
 ## API
+
 
 ## Maintainers
 
