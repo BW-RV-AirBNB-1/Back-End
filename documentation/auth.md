@@ -34,7 +34,7 @@ Provide username and password to be created. Password should be a string.
 
 ```
 
-**Data Example: ** **_All fields are required._**
+**Data Example:** **All fields are required.**
 ```
 {
     "username": "testyMcTesty",
