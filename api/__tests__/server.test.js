@@ -12,21 +12,26 @@ describe("Server", () => {
 
     describe("GET /", () => {
 
-        it("Should return status 200 OK", async () => {
-            const res =  await request(server).get('/')
-
-            expect(res.status).toBe(200);
+        it("Should return status 200 OK", () => {
+            return request(server).get('/')
+            .then(res => {
+                expect(res.status).toBe(200);
+            });  
         });
 
         it("Should return json body formatting ", async () => {
-            const res = await request(server).get("/");
-
-            expect(res.type).toMatch(/json/i);
+            return request(server).get("/")
+            .then(res => {
+                expect(res.type).toMatch(/json/i);
+            })
+            
         })
 
         it("Should return json message", async () => {
-            const res = await request(server).get("/");
-            expect(res.body.message).toMatch(/server working/i);
+            return request(server).get("/")
+            .then(res => {
+                expect(res.body.message).toMatch(/server working/i);
+            });
         })
 
     });
