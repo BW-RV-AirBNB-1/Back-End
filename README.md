@@ -43,6 +43,11 @@ https://buildwk-4-bknd-prod-coreygumbs.herokuapp.com/api/"endpoint"
 * [Users Auth (Login, Register)](./documentation/UsersAuth.md)
 * [Listings](./documentation/Listings.md)
 
+## Database Schema
+
+![alt text][database](./documentation/img/databaseschema.png)
+
+ 
 
 ## Maintainers
 
