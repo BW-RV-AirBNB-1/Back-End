@@ -2,13 +2,13 @@
 
 All authentication endpoints are listed on this page. 
 
-### Table Of Conetents
+### Table Of Contents
 
 * [Home](../README.md)
 * [Register](#register)
 * [Login](#login)
 
-# Create New RV Owner User Account
+# Register
 
 Creates a new user account if one does not already exists. Each username is unique and there can only be one account per username.
 JWT token is created for authentication incase of redirect to restricted area such as a dashboard, profile, etc.
@@ -86,7 +86,7 @@ Provide username and password to be created. Password should be a string.
 n/a
 
 
-# Login RV Owner User Account
+# Login
 
 Logs in and authenticates user. JWT token is created for authentication incase of redirect to restricted area such as a dashboard, profile, etc. 
 

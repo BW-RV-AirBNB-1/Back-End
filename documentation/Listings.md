@@ -1,45 +1,39 @@
-# Auth - Land Owner User Accounts
+# Listings 
 
-All authentication endpoints are listed on this page. 
+All Listing endpoints for RV Owners & Land Owners. 
 
-### Table Of Contents
+### Table Of Conetents
 
 * [Home](../README.md)
-* [Register](#register)
+* [All Listings](#show)
 * [Login](#login)
 
-# Register
+# Show All Listings
 
-Creates a new user account if one does not already exists. Each username is unique and there can only be one account per username.
-JWT token is created for authentication incase of redirect to restricted area such as a dashboard, profile, etc.
+**RV Owners Only** See all listings.
 
-**URL:** `/api/land/register`
+**URL:** `/api/listings`
 
-**Method:** `POST`
+**Method:** `GET`
 
-**Auth required:** `None`
+**Auth required:** `YES`
 
-**Permissions required:** `None`
+**Permissions required:** `YES`
 
-**URL Params:**  `n/a`
+* RV User Only
 
-**Data Constraints:** 
-Provide username and password to be created. Password should be a string.  
+**URL Params:**  `None`
 
-```
-{
-    "username": "[string max: 255 char]",
-    "password": "[string]"
-}
+**Data Constraints:** `None`
+ 
 
 ```
-
-**Data Example:** **All fields are required.**
+{}
 ```
-{
-    "username": "testyMcTesty",
-    "password": "passWord1@3&8"
-}
+
+**Data Example:** `None`
+```
+{}
 ```
 
 ## Success Response
@@ -90,7 +84,7 @@ n/a
 
 Logs in and authenticates user. JWT token is created for authentication incase of redirect to restricted area such as a dashboard, profile, etc. 
 
-**URL:** `/api/land/login`
+**URL:** `/api/rv/login`
 
 **Method:** `POST`
 
