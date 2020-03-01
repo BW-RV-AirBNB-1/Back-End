@@ -16,9 +16,7 @@ Listing Endpoints that both RV & Land Owners have access to.
 # RV Owners
 Listing endpoints that only RV Owner users have access to.
 
-### Show All Listings
-
-
+## Show All Listings
 See all listings.
 
 **URL:** `/api/listings`
