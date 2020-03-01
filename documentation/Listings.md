@@ -112,7 +112,7 @@ n/a
 [Back To Top](#listings)
 
 # RV Owners
-Listing endpoints that only RV Owner users have access to. 
+Listing endpoints that only RV Owner users have access to.  RV Owner is a user account that has is_land_owner = 0 (false).
 
 ## Show All Listings
 See all listings.
@@ -219,6 +219,7 @@ n/a
 
 ## Show All Land Owner Listings
 Uses land owner id to query database and retrieve all listings associated with land owner account. 
+Land Owner is a user account that has is_land_owner = 1 (true).
 
 **URL:** `/api/listings/landowner/:landowner_id`
 
@@ -312,7 +313,7 @@ n/a
 ## Create Listing
 Land Owner can create a new listing. State_id comes from state table which should pass the value from form. See [state endpoint](./state.md) for more implementation info. 
 
-**URL:** `/api/listings/
+**URL:** `/api/listings`
 
 **Method:** `POST`
 
