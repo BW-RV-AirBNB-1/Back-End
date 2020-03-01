@@ -329,7 +329,7 @@ Land Owner can create a new listing.
 
 State_id comes from state table which should pass the value from form. 
 
-See [States endpoint](./states.md#show-all-states) for more implementation info. 
+See [States endpoint](./States.md#show-all-states) for more implementation info. 
 
 Land Owner is a user account that has is_land_owner = 1 (true).
 
