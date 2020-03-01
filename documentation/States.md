@@ -1,20 +1,15 @@
-# Listings 
-
-All Listing endpoints for RV Owners & Land Owners. 
-
-### Table Of Conetents
-
-* [Home](../README.md)
-* [Get All States](#show-all-states)
-* [Get State By ID](#get-state-by-id)
-
-
 # States
 States endpoints is a list of all 50 states with abbrevations. 
 
  When using with create listing drop down menus/forms, map through the states and use the states' id as the option value. 
 
 The state's id value is used in the states_id column of the listings endpoint. [See Create Listings](./listings#create-listing)
+
+### Table Of Conetents
+
+* [Home](../README.md)
+* [Get All States](#show-all-states)
+* [Get State By ID](#get-state-by-id)
 
 ## Show All States
 Get a list of all states for location query.
