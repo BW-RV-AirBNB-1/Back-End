@@ -310,7 +310,7 @@ n/a
 [Back To Top](#listings)
 
 ## Create Listing
-Land Owner can create a new listing. State_id comes from state table which should pass the value from form. See [state endpoint](./state.md) for more implementation info. 
+Land Owner can create a new listing. State_id comes from state table which should pass the value from form. See [States endpoint](./states.md#show-all-states) for more implementation info. 
 
 **URL:** `/api/listings`
 
