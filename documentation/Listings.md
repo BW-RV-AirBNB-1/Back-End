@@ -5,12 +5,19 @@ All Listing endpoints for RV Owners & Land Owners.
 ### Table Of Conetents
 
 * [Home](../README.md)
-* [All Listings](#show)
-* [Login](#login)
+* [All Users](#all-users)
+* [RV Owners](#rv-owners)
+  * [Show All Listings](#show-all-listings)
+  * [Show Listing By ID](#show-listing-by-id)
+* [Land Owners](#land-owners)
 
-# Show All Listings
+# All Users
+Listing Endpoints that both RV & Land Owners have access to.
+# RV Owners
 
-**RV Owners Only** See all listings.
+## Show All Listings
+
+See all listings.
 
 **URL:** `/api/listings`
 
@@ -38,127 +45,180 @@ All Listing endpoints for RV Owners & Land Owners.
 
 ## Success Response
 
-**Condition:**  If no User account exists and everything is OK.
+**Condition:**  If at least one listing exists and everything is OK.
 
-**Code:**  `201 Created`
+**Code:**  `200 OK`
 
 **Content Example:**
 ```
-{
-  id: 1,
-  username: 'TestyMcTesty',
-  token: 'eyJhbGciOiJIUzI1NiIs.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF.SflKxwRJSMeKKF2QT4fw'
-}
+[
+    {
+        id: 1,
+        state_id: 1,
+        title: 'Lorem Ipsum',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
+        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
+        price_per_day: 24.99,
+        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
+        landowner_id: 2
+    },
+    {
+        id: 2,
+        state_id: 23,
+        title: 'Lorem Ipsum',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
+        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
+        price_per_day: 54.99,
+        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
+        landowner_id: 1
+    },
+    {
+        id: 3,
+        state_id: 13,
+        title: 'Lorem Ipsum',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
+        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
+        price_per_day: 19.99,
+        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
+        landowner_id: 1
+    },
+    ...
+]
 ```
 ## Error Response
 
-**Condition:**  If account already exists.
+**Condition:**  If user is restricted from viewing content (Land Owners cannot view all listings).
 
 **Code:**  `403 Forbidden`
 
 **Content Example:**
 ```
 {
-    Error: "There was a problem creating account."
+    Error: 'Logged in user has no access.'
 }
 ```
 
 ### OR
 
-**Condition:**  If account already exists.
+**Condition:**  If there is an issue retrieving data.
 
-**Code:**  `400 BAD REQUEST`
+**Code:**  `500 INTERNAL SERVER ERROR`
 
 **Content Example:**
 ```
 {
-    Error: "Missing required field."
+    Error: "There was a server error."
 }
 ```
+
 ## Notes
 
 n/a
 
 
-# Login
+## Show Listing By ID
 
-Logs in and authenticates user. JWT token is created for authentication incase of redirect to restricted area such as a dashboard, profile, etc. 
+See all listings.
 
-**URL:** `/api/rv/login`
+**URL:** `/api/listings`
 
-**Method:** `POST`
+**Method:** `GET`
 
-**Auth required:** `None`
+**Auth required:** `YES`
 
-**Permissions required:** `None`
+**Permissions required:** `YES`
 
-**URL Params:**  `n/a`
+* RV User Only
 
-**Data Constraints:** 
-Provide username and password to be authenticated. Password should be a string.  
+**URL Params:**  `None`
 
-```
-{
-    "username": "[string max: 255 char]",
-    "password": "[string]",
-}
+**Data Constraints:** `None`
+ 
 
 ```
-
-**Data Example:** **All fields are required.**
-
+{}
 ```
-{
-    "username": "testyMcTesty",
-    "password": "passWord1@3&8"
-}
+
+**Data Example:** `None`
+```
+{}
 ```
 
 ## Success Response
 
-**Condition:**  If User account exists and everything is OK.
+**Condition:**  If at least one listing exists and everything is OK.
 
-**Code:**  `200 Created`
+**Code:**  `200 OK`
 
 **Content Example:**
-
 ```
-{
-  id: 1,
-  username: 'TestyMcTesty',
-  role: rvowner,
-  token: 'eyJhbGciOiJIUzI1NiIs.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF.SflKxwRJSMeKKF2QT4fw'
-}
+[
+    {
+        id: 1,
+        state_id: 1,
+        title: 'Lorem Ipsum',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
+        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
+        price_per_day: 24.99,
+        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
+        landowner_id: 2
+    },
+    {
+        id: 2,
+        state_id: 23,
+        title: 'Lorem Ipsum',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
+        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
+        price_per_day: 54.99,
+        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
+        landowner_id: 1
+    },
+    {
+        id: 3,
+        state_id: 13,
+        title: 'Lorem Ipsum',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
+        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
+        price_per_day: 19.99,
+        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
+        landowner_id: 1
+    },
+    ...
+]
 ```
-
 ## Error Response
 
-**Condition:**  If account doesnt exists.
+**Condition:**  If user is restricted from viewing content (Land Owners cannot view all listings).
 
 **Code:**  `403 Forbidden`
 
 **Content Example:**
-
 ```
 {
-    Error: "There was a problem creating account."
+    Error: 'Logged in user has no access.'
 }
 ```
 
 ### OR
 
-**Condition:**  If required fields are missing, username or password spelling error, etc.
+**Condition:**  If there is an issue retrieving data.
 
-**Code:**  `400 BAD REQUEST`
+**Code:**  `500 INTERNAL SERVER ERROR`
 
 **Content Example:**
-
 ```
 {
-    Error: "There was a problem logging in to account."
+    Error: "There was a server error."
 }
 ```
 
 ## Notes
 
 n/a
+
+
+# Land Owners
+
+
+
+[Back To Top](#listings)
