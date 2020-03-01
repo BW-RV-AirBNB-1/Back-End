@@ -72,7 +72,7 @@ Provide username and password to be created. Password should be a string.
 }
 ```
 
-## OR
+### OR
 
 **Condition:**  If account already exists.
 
@@ -154,7 +154,7 @@ Provide username and password to be authenticated. Password should be a string.
 }
 ```
 
-## OR
+### OR
 
 **Condition:**  If required fields are missing, username or password spelling error, etc.
 
@@ -167,3 +167,7 @@ Provide username and password to be authenticated. Password should be a string.
     Error: "There was a problem logging in to account."
 }
 ```
+
+## Notes
+
+n/a
