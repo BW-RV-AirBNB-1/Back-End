@@ -16,10 +16,15 @@ All Listing endpoints for RV Owners & Land Owners.
   * [Delete Listing](#delete-listing)
 
 # All Users
+
 Listing Endpoints that both RV & Land Owners have access to.
 
+
 ## Show Listing By ID
+
 See an individual lising by its' ID.
+
+---
 
 **URL:** `/api/listings/:listing_id`
 
@@ -112,10 +117,15 @@ n/a
 [Back To Top](#listings)
 
 # RV Owners
+
 Listing endpoints that only RV Owner users have access to.  RV Owner is a user account that has is_land_owner = 0 (false).
 
+
 ## Show All Listings
+
 See all listings.
+
+---
 
 **URL:** `/api/listings`
 
@@ -218,8 +228,12 @@ n/a
 # Land Owners
 
 ## Show All Land Owner Listings
+
 Uses land owner id to query database and retrieve all listings associated with land owner account. 
+
 Land Owner is a user account that has is_land_owner = 1 (true).
+
+---
 
 **URL:** `/api/listings/landowner/:landowner_id`
 
@@ -310,7 +324,16 @@ n/a
 [Back To Top](#listings)
 
 ## Create Listing
-Land Owner can create a new listing. State_id comes from state table which should pass the value from form. See [States endpoint](./states.md#show-all-states) for more implementation info. 
+
+Land Owner can create a new listing. 
+
+State_id comes from state table which should pass the value from form. 
+
+See [States endpoint](./states.md#show-all-states) for more implementation info. 
+
+Land Owner is a user account that has is_land_owner = 1 (true).
+
+---
 
 **URL:** `/api/listings`
 
@@ -409,8 +432,16 @@ n/a
 [Back To Top](#listings)
 
 ## Update Listing
-Land Owner can update a listing. Return all data values that exist to their properties and only change the ones that need updating. 
+
+Land Owner can update a listing. 
+
+Return all data values that exist to their properties and only change the ones that need updating. 
+
 Failure to return the data values will either give it a null value or return an error.
+
+Land Owner is a user account that has is_land_owner = 1 (true).
+
+---
 
 **URL:** `/api/listings/:listing_id`
 
@@ -534,7 +565,12 @@ n/a
 [Back To Top](#listings)
 
 ## Delete Listing
+
 Land Owner can delete a listing. 
+
+Land Owner is a user account that has is_land_owner = 1 (true).
+
+---
 
 **URL:** `/api/listings/:listing_id`
 

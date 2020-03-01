@@ -10,8 +10,14 @@ All authentication endpoints are listed on this page.
 
 # Register
 
-Creates a new user account if one does not already exists. Each username is unique and there can only be one account per username.
+Creates a new user account if one does not already exists. 
+
+Each username is unique and there can only be one account per username.
+
 JWT token is created for authentication incase of redirect to restricted area such as a dashboard, profile, etc.
+
+---
+
 
 **URL:** `/api/auth/register`
 
@@ -91,7 +97,11 @@ n/a
 
 # Login
 
-Logs in and authenticates user. JWT token is created for authentication incase of redirect to restricted area such as a dashboard, profile, etc. 
+Logs in and authenticates user. 
+
+JWT token is created for authentication incase of redirect to restricted area such as a dashboard, profile, etc.
+
+---
 
 **URL:** `/api/auth/login`
 
