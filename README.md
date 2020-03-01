@@ -40,7 +40,13 @@ https://buildwk-4-bknd-prod-coreygumbs.herokuapp.com/api/"endpoint"
 
 ## API
 
-[Auth Endpoints (Login, Register)](./documentation/auth.md)
+* [Users Auth (Login, Register)](./documentation/UsersAuth.md)
+* [Listings](./documentation/Listings.md)
+* [States](./documentation/States.md)
+
+## Database Schema
+
+![logo](https://github.com/BW-RV-AirBNB-1/Back-End/blob/documentation/documentation/img/databaseschema.png "Database Schema")
 
 ## Maintainers
 
