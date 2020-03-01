@@ -4,6 +4,7 @@ All authentication endpoints are listed on this page.
 
 ### Table Of Conetents
 
+* [Home](../README.md)
 * [Register](#register)
 * [Login](#login)
 
