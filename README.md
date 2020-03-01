@@ -40,8 +40,7 @@ https://buildwk-4-bknd-prod-coreygumbs.herokuapp.com/api/"endpoint"
 
 ## API
 
-* [RV Owner Auth (Login, Register)](./documentation/RVOwnerAuth.md)
-* [Land Owner Auth (Login, Register)](./documentation/LandOwnerAuth.md)
+* [Users Auth (Login, Register)](./documentation/UsersAuth.md)
 * [Listings](./documentation/Listings.md)
 
 

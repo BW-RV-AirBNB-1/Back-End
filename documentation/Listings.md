@@ -11,6 +11,9 @@ All Listing endpoints for RV Owners & Land Owners.
   * [Show All Listings](#show-all-listings)
 * [Land Owners](#land-owners)
   * [Show All Land Owner Listings](#show-all-land-owner-listings)
+  * [Create Listing](#create-listing)
+  * [Update Listing](#update-listing)
+  * [Delete Listing]()
 
 # All Users
 Listing Endpoints that both RV & Land Owners have access to.
@@ -182,7 +185,7 @@ See all listings.
 ```
 ## Error Response
 
-**Condition:**  If user is restricted from viewing content (Land Owners cannot view all listings).
+**Condition:**  If is_land_owner = true, user is restricted from viewing content (Land Owners cannot view all listings).
 
 **Code:**  `403 Forbidden`
 
@@ -275,7 +278,7 @@ Uses land owner id to query database and retrieve all listings associated with l
 ```
 ## Error Response
 
-**Condition:**  If user is restricted from viewing content (Only land owner with correct id can view).
+**Condition:**  If is_land_owner = false, user is restricted from viewing content (Only land owner with correct id can view).
 
 **Code:**  `403 Forbidden`
 
@@ -283,6 +286,231 @@ Uses land owner id to query database and retrieve all listings associated with l
 ```
 {
     Error: 'Logged in user has no access.'
+}
+```
+
+### OR
+
+**Condition:**  If there is an issue retrieving data.
+
+**Code:**  `500 INTERNAL SERVER ERROR`
+
+**Content Example:**
+```
+{
+    Error: "There was a server error."
+}
+```
+
+## Notes
+
+n/a
+
+[Back To Top](#listings)
+
+
+## Create Listing
+Land Owner can create a new listing. State_id comes from state table which should pass the value from form. See [state endpoint](./state.md) for more implementation info. 
+
+**URL:** `/api/listings/
+
+**Method:** `POST`
+
+**Auth required:** `YES`
+
+**Permissions required:** `YES`
+
+* Land Owners Only
+
+**URL Params:**  `None`
+
+**Data Constraints:** 
+
+**Required Fields:** state_id, landowner_id, title, description, price_per_day
+
+```
+{
+    "state_id": "[integer, not nullable]",
+    "landowner_id": [integer, not nullable]",
+    "title": "[string max: 255 char not nullable]",
+    "description": "[text max: 500char, not nullable]",
+    "price_per_day": "[float (decimal), not nullable]",
+    "photo_url": "[text, nullable] ",
+    "longitude": "[text, nullable]",
+    "latitude": "[text, nullable]"
+}
+```
+
+**Data Example:** 
+```
+{
+    "state_id": 34,
+    "landowner_id": 3,
+    "title": "Rent This Land Here.",
+    "description": "34 x 45 lot, free cable, free wifi, sewer accees.",
+    "price_per_day": 53.99,
+    "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q ",
+    "longitude": "40.7128 N",
+    "latitude": "74.0060 W"
+}
+```
+
+## Success Response
+
+**Condition:**  If land owner ID is correct and everything is OK.
+
+**Code:**  `201 CREATED`
+
+**Content Example:**
+```
+[
+    {
+        "state_id": 34,
+        "landowner_id": 3,
+        "title": "Rent This Land Here.",
+        "description": "34 x 45 lot, free cable, free wifi, sewer accees.",
+        "price_per_day": 53.99,
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q ",
+        "longitude": "40.7128 N",
+        "latitude": "74.0060 W"
+    }
+]
+```
+## Error Response
+
+**Condition:**  If is_land_owner = false, user is restricted from creating a listing. (Only land owner can create a listing).
+
+**Code:**  `403 Forbidden`
+
+**Content Example:**
+```
+{
+    Error: 'Logged in user has no access.'
+}
+```
+
+### OR
+
+**Condition:**  If there is an issue retrieving data.
+
+**Code:**  `500 INTERNAL SERVER ERROR`
+
+**Content Example:**
+```
+{
+    Error: "There was a server error."
+}
+```
+
+## Notes
+
+n/a
+
+[Back To Top](#listings)
+
+## Update Listing
+Land Owner can update a listing. Return all data values that exist to their properties and only change the ones that need updating. 
+Failure to return the data values will either give it a null value or return an error.
+
+**URL:** `/api/listings/:id
+
+**Method:** `POST`
+
+**Auth required:** `YES`
+
+**Permissions required:** `YES`
+
+* Land Owners Only
+
+**URL Params:**  `:listing_id =  listing.id`
+
+**Data Constraints:** 
+
+**Required Fields:** state_id, landowner_id, title, description, price_per_day
+
+```
+{
+    "state_id": "[integer, not nullable]",
+    "landowner_id": [integer, not nullable]",
+    "title": "[string max: 255 char not nullable]",
+    "description": "[text max: 500char, not nullable]",
+    "price_per_day": "[float (decimal), not nullable]",
+    "photo_url": "[text, nullable] ",
+    "longitude": "[text, nullable]",
+    "latitude": "[text, nullable]"
+}
+```
+
+**Data Example:** 
+```
+{
+    "state_id": 34,
+    "landowner_id": 3,
+    "title": "Rent This Land Here.",
+    "description": "34 x 45 lot, free cable, free wifi, sewer accees.",
+    "price_per_day": 53.99,
+    "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q ",
+    "longitude": "40.7128 N",
+    "latitude": "74.0060 W"
+}
+```
+
+## Success Response
+
+**Condition:**  If land owner ID is correct and everything is OK.
+
+**Code:**  `201 CREATED`
+
+**Content Example:**
+```
+[
+    {
+        "state_id": 34,
+        "landowner_id": 3,
+        "title": "Rent This Land Here.",
+        "description": "34 x 45 lot, free cable, free wifi, sewer accees.",
+        "price_per_day": 53.99,
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q ",
+        "longitude": "40.7128 N",
+        "latitude": "74.0060 W"
+    }
+]
+```
+## Error Response
+
+**Condition:**  If is_land_owner = false, user is restricted from creating a listing. (Only land owner can create a listing).
+
+**Code:**  `403 Forbidden`
+
+**Content Example:**
+```
+{
+    Error: 'Logged in user has no access.'
+}
+```
+### OR
+
+**Condition:**  If a required field does not recieve data or data value = null.
+
+**Code:**  `400 BAD REQUEST`
+
+**Content Example:**
+```
+{
+    Error: "Missing Required Field."
+}
+```
+
+### OR
+
+**Condition:**  If listing doesn't exist.
+
+**Code:**  `404 LISTING DOESNT EXIST`
+
+**Content Example:**
+```
+{
+    Error: "Listing Does Not Exist."
 }
 ```
 

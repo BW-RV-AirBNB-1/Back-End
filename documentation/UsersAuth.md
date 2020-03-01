@@ -1,4 +1,4 @@
-# Auth - Land Owner User Accounts
+# Auth - User Accounts
 
 All authentication endpoints are listed on this page. 
 
@@ -13,7 +13,7 @@ All authentication endpoints are listed on this page.
 Creates a new user account if one does not already exists. Each username is unique and there can only be one account per username.
 JWT token is created for authentication incase of redirect to restricted area such as a dashboard, profile, etc.
 
-**URL:** `/api/land/register`
+**URL:** `/api/auth/register`
 
 **Method:** `POST`
 
@@ -24,12 +24,13 @@ JWT token is created for authentication incase of redirect to restricted area su
 **URL Params:**  `n/a`
 
 **Data Constraints:** 
-Provide username and password to be created. Password should be a string.  
+Provide username, password, and is_land_owner to be created. Password should be a string.  
 
 ```
 {
     "username": "[string max: 255 char]",
-    "password": "[string]"
+    "password": "[string]",
+    "is_land_owner": [boolean, 0 = F/ 1 = T]
 }
 
 ```
@@ -38,7 +39,8 @@ Provide username and password to be created. Password should be a string.
 ```
 {
     "username": "testyMcTesty",
-    "password": "passWord1@3&8"
+    "password": "passWord1@3&8",
+    "is_land_owner": 0 (false) or 1 (true)
 }
 ```
 
@@ -53,6 +55,7 @@ Provide username and password to be created. Password should be a string.
 {
   id: 1,
   username: 'TestyMcTesty',
+  is_land_owner: 0,
   token: 'eyJhbGciOiJIUzI1NiIs.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF.SflKxwRJSMeKKF2QT4fw'
 }
 ```
@@ -90,7 +93,7 @@ n/a
 
 Logs in and authenticates user. JWT token is created for authentication incase of redirect to restricted area such as a dashboard, profile, etc. 
 
-**URL:** `/api/land/login`
+**URL:** `/api/auth/login`
 
 **Method:** `POST`
 
@@ -124,7 +127,7 @@ Provide username and password to be authenticated. Password should be a string.
 
 **Condition:**  If User account exists and everything is OK.
 
-**Code:**  `200 Created`
+**Code:**  `201 Created`
 
 **Content Example:**
 
@@ -132,7 +135,7 @@ Provide username and password to be authenticated. Password should be a string.
 {
   id: 1,
   username: 'TestyMcTesty',
-  role: rvowner,
+  is_land_owner: 1 (true),
   token: 'eyJhbGciOiJIUzI1NiIs.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF.SflKxwRJSMeKKF2QT4fw'
 }
 ```
