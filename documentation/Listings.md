@@ -13,7 +13,7 @@ All Listing endpoints for RV Owners & Land Owners.
   * [Show All Land Owner Listings](#show-all-land-owner-listings)
   * [Create Listing](#create-listing)
   * [Update Listing](#update-listing)
-  * [Delete Listing]()
+  * [Delete Listing](#delete-listing)
 
 # All Users
 Listing Endpoints that both RV & Land Owners have access to.
@@ -309,7 +309,6 @@ n/a
 
 [Back To Top](#listings)
 
-
 ## Create Listing
 Land Owner can create a new listing. State_id comes from state table which should pass the value from form. See [state endpoint](./state.md) for more implementation info. 
 
@@ -413,7 +412,7 @@ n/a
 Land Owner can update a listing. Return all data values that exist to their properties and only change the ones that need updating. 
 Failure to return the data values will either give it a null value or return an error.
 
-**URL:** `/api/listings/:id
+**URL:** `/api/listings/:listing_id`
 
 **Method:** `POST`
 
@@ -479,7 +478,7 @@ Failure to return the data values will either give it a null value or return an 
 ```
 ## Error Response
 
-**Condition:**  If is_land_owner = false, user is restricted from creating a listing. (Only land owner can create a listing).
+**Condition:**  If is_land_owner = false, user is restricted from creating a listing. (Only land owner can update a listing).
 
 **Code:**  `403 Forbidden`
 
@@ -499,6 +498,90 @@ Failure to return the data values will either give it a null value or return an 
 ```
 {
     Error: "Missing Required Field."
+}
+```
+
+### OR
+
+**Condition:**  If listing doesn't exist.
+
+**Code:**  `404 LISTING DOESNT EXIST`
+
+**Content Example:**
+```
+{
+    Error: "Listing Does Not Exist."
+}
+```
+
+### OR
+
+**Condition:**  If there is an issue retrieving data.
+
+**Code:**  `500 INTERNAL SERVER ERROR`
+
+**Content Example:**
+```
+{
+    Error: "There was a server error."
+}
+```
+
+## Notes
+
+n/a
+
+[Back To Top](#listings)
+
+## Delete Listing
+Land Owner can delete a listing. 
+
+**URL:** `/api/listings/:listing_id`
+
+**Method:** `DELETE`
+
+**Auth required:** `YES`
+
+**Permissions required:** `YES`
+
+* Land Owners Only
+
+**URL Params:**  `:listing_id =  listing.id`
+
+**Data Constraints:** `None`
+```
+{}
+```
+
+**Data Example:** `None`
+```
+{}
+```
+
+## Success Response
+
+**Condition:**  If listing ID is correct and everything is OK.
+
+**Code:**  `200 OK`
+
+**Content Example:**
+```
+[
+    {
+        message: "Listing Deleted"
+    }
+]
+```
+## Error Response
+
+**Condition:**  If is_land_owner = false, user is restricted from creating a listing. (Only land owner can delete a listing).
+
+**Code:**  `403 Forbidden`
+
+**Content Example:**
+```
+{
+    Error: 'Logged in user has no access.'
 }
 ```
 
