@@ -118,7 +118,7 @@ n/a
 
 # RV Owners
 
-Listing endpoints that only RV Owner users have access to.  RV Owner is a user account that has is_land_owner = 0 (false).
+Listing endpoints that only RV Owner users have access to.  RV Owner is a user account that has is_land_owner = false.
 
 
 ## Show All Listings
@@ -231,7 +231,7 @@ n/a
 
 Uses land owner id to query database and retrieve all listings associated with land owner account. 
 
-Land Owner is a user account that has is_land_owner = 1 (true).
+Land Owner is a user account that has is_land_owner = true.
 
 ---
 
@@ -331,7 +331,7 @@ State_id comes from state table which should pass the value from form.
 
 See [States endpoint](./States.md#show-all-states) for more implementation info. 
 
-Land Owner is a user account that has is_land_owner = 1 (true).
+Land Owner is a user account that has is_land_owner = true.
 
 ---
 
@@ -439,7 +439,7 @@ Return all data values that exist to their properties and only change the ones t
 
 Failure to return the data values will either give it a null value or return an error.
 
-Land Owner is a user account that has is_land_owner = 1 (true).
+Land Owner is a user account that has is_land_owner = true.
 
 ---
 
