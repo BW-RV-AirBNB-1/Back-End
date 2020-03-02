@@ -1,7 +1,10 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
-const token  = require('jsonwebtoken');
+const jwt  = require('jsonwebtoken');
+
 const Users = require('./auth-model');
+const Token = require('./auth-helpers');
+
 const validateUser = require('../middleware/validateUser');
 
 
@@ -11,6 +14,7 @@ router.get('/', (req, res) => {
 
 router.post('/', validateUser, (req, res) => {
     let user = req.body;
+    const token = Token.generateToken(user.username);
 
     const salt = bcrypt.genSaltSync(14);
     const hash = bcrypt.hashSync(user.password, salt);
@@ -19,7 +23,7 @@ router.post('/', validateUser, (req, res) => {
 
     Users.add(req.body)
     .then(user => {
-        res.status(201).json(user);
+        res.status(201).json({user, token});
     })
     .catch(({name, message, stack, code}) => {
         res.status(500).json({ 

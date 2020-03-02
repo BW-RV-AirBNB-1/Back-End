@@ -59,10 +59,14 @@ Provide username, password, and is_land_owner to be created. Password should be 
 **Content Example:**
 ```
 {
-  id: 1,
-  username: 'TestyMcTesty',
-  is_land_owner: 0,
-  token: 'eyJhbGciOiJIUzI1NiIs.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF.SflKxwRJSMeKKF2QT4fw'
+    "user": [
+        {
+            "id": 1,
+            "username": "testyMcTesty",
+            "is_land_owner": true
+        }
+    ],
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODMxNzgwNzAsImV4cCI6MTU4MzI2NDQ3MH0.muXW_eKn6iZ80UqbwiROH48dQ611fhIDCQvm8Hu-2EE"
 }
 ```
 ## Error Response
