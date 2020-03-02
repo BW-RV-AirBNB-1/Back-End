@@ -19,7 +19,7 @@ JWT token is created for authentication incase of redirect to restricted area su
 ---
 
 
-**URL:** `/api/auth/register`
+**URL:** `/api/register`
 
 **Method:** `POST`
 

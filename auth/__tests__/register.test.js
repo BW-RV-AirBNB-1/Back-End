@@ -3,33 +3,33 @@ const server = require('../../api/server');
 
 
 
-describe("Auth Testing", () => {
+describe("Register Route Testing", () => {
 
     describe("Get /", () => {
         
         it(" Should return 200 OK", async () => {
-            const res  = await request(server).get('/api/auth')
+            const res  = await request(server).get('/api/register')
 
             expect(res.status).toBe(200);
 
         });
 
         it("Should return json formatted body", async () => {
-            const res = await request(server).get('/api/auth');
+            const res = await request(server).get('/api/register');
 
             expect(res.type).toMatch(/json/i);
         });
 
         it("Should return json data", async () => {
-            const res = await request(server).get('/api/auth');
-            expect(res.body.message).toMatch(/auth/i);
+            const res = await request(server).get('/api/register');
+            expect(res.body.message).toMatch(/register/i);
         });
     });
 
     describe('POST /register', () => {
         
         it("add user to db and return json", async () => {
-            const res = await request(server).post('/api/auth/register')
+            const res = await request(server).post('/api/register')
             .send({
                "username": "johnDoe",
                "password": "password12345",

@@ -5,10 +5,10 @@ const validateUser = require('../middleware/validateUser');
 
 
 router.get('/', (req, res) => {
-    res.status(200).json({message: 'auth route working'});
+    res.status(200).json({message: 'register route working'});
 });
 
-router.post('/register', validateUser, (req, res) => {
+router.post('/', validateUser, (req, res) => {
     let user = req.body;
 
     const salt = bcrypt.genSaltSync(14);
