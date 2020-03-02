@@ -7,6 +7,5 @@ module.exports = {
 function add(user){
     return db('users')
     .returning(['id', 'username', 'is_land_owner'])
-    .insert(user)
-
+    .insert(user);
 }

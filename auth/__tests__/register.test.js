@@ -55,7 +55,6 @@ describe("Register Route Testing", () => {
             });
         });
     
-
         describe('POST /register add new user', () => {
             it("add user to db and return json", async () => {
                 const res = await request(server).post('/api/register')
