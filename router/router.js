@@ -1,11 +1,13 @@
 const router = require('express').Router();
+
 const registerRouter = require('../auth/register-router');
-const userRouter = require('../users/user-router.js');
+const loginRouter = require('../auth/login-router');
+
 const restricted = require('../middleware/restricted');
 
 
 router.use('/register', registerRouter);
-router.use('/users', restricted, userRouter);
+router.use('/login', loginRouter);
 
 router.get('/', (req, res) => {
     res.status(200).json({message: "api working"});
