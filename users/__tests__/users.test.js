@@ -27,7 +27,9 @@ describe("Users", () => {
     describe('GET /:id', () => {
 
         it("Should return 200 OK", async () => {
-            const res = await request(server).get('/')
+            const res = await request(server).get('/api/users/1')
+
+            expect(res.body.username).toBe("testMcTesty");
         });
     })
 });
