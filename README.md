@@ -2,11 +2,9 @@
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-TODO: Put more badges here.
+[![Maintainability](https://api.codeclimate.com/v1/badges/dbdd4fa65c8b4ea7ef81/maintainability)](https://codeclimate.com/github/BW-RV-AirBNB-1/Back-End/maintainability)
 
 The API for RV Camping Air BnB.
-
-TODO: Fill out this long description.
 
 ## Table of Contents
 

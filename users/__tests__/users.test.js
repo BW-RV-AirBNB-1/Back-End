@@ -12,15 +12,26 @@ describe("Users", () => {
             expect(res.status).toBe(200);
         });
 
-        it("Should jsob body", async () => {
+        it("Should return an array of json", async () => {
             const res = await request(server).get('/api/users')
 
-            expect(res.type).toMatch(/json/i)
+            expect(Array.isArray(res.body)).toBe(true);
         });
 
-        it("Should jsob body", async () => {
+        it("Should json formatted body", async () => {
             const res = await request(server).get('/api/users');
-            expect(res.body.data[0].username).toMatch(/testyMcTesty/i);
+            expect(res.type).toMatch(/json/i);
         });
+    });
+
+    describe('POST /Register', () => {
+
+        it("should return created user", async () => {
+            const res = await request(server).post('/api/users/register')
+
+            
+
+        });
+
     });
 });
