@@ -28,8 +28,8 @@ describe("Users", () => {
 
         it("Should return 200 OK", async () => {
             const res = await request(server).get('/api/users/1')
-
-            expect(res.body.username).toBe("testMcTesty");
+         
+            expect(res.body[0].username).toBe("testyMcTesty");
         });
     })
 });
