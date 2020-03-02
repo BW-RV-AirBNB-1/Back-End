@@ -8,25 +8,28 @@ const validateUser = require('../middleware/validateUser');
 
 
 router.get('/', (req, res) => {
-    res.status(200).json({message: 'register route working'});
-});
+    res.status(200).json({message: '/api/login router working'});
+})
 
 router.post('/', validateUser, (req, res) => {
-    let user = req.body;
-    const token = Token.generateToken(user.username);
-
-    const salt = bcrypt.genSaltSync(14);
-    const hash = bcrypt.hashSync(user.password, salt);
-
-    user.password = hash;
-
-    Users.add(req.body)
+    const {username, password} = req.body;
+    
+    Users.findBy({username})
+    .first()
     .then(user => {
-        res.status(201).json({user, token});
+        
+        if(user && bcrypt.compareSync(password, user.password)){
+
+            const token = Token.generateToken(user.username);
+
+            res.status(200).json({user, token});
+        }else{
+            res.status(400).json({message: 'Invalid Credentials.'})
+        }
     })
     .catch(({name, message, stack, code}) => {
         res.status(500).json({ 
-            error: 'There was an issue creating user.',
+            error: 'There was an retrieving user.',
             name: name,
             message: message,
             stack: stack,
@@ -34,5 +37,6 @@ router.post('/', validateUser, (req, res) => {
         });
     });
 })
+
 
 module.exports = router;

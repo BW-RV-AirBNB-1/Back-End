@@ -107,7 +107,7 @@ JWT token is created for authentication incase of redirect to restricted area su
 
 ---
 
-**URL:** `/api/auth/login`
+**URL:** `/api/login`
 
 **Method:** `POST`
 
@@ -141,16 +141,19 @@ Provide username and password to be authenticated. Password should be a string.
 
 **Condition:**  If User account exists and everything is OK.
 
-**Code:**  `201 Created`
+**Code:**  `200 OK`
 
 **Content Example:**
 
 ```
 {
-  id: 1,
-  username: 'TestyMcTesty',
-  is_land_owner: true,
-  token: 'eyJhbGciOiJIUzI1NiIs.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF.SflKxwRJSMeKKF2QT4fw'
+    "user": {
+        "id": 1,
+        "username": "johnDoeham",
+        "password": "$2a$14$2pwrpq1pB2PWDPDRlyMDs.ExLBjHB3XQJmdcJ07dTPUBF4u5jWlji",
+        "is_land_owner": true
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODMxODUyMjUsImV4cCI6MTU4MzI3MTYyNX0.bN4MtBAcKAMc9QZkGSPzZwmXix_KxZKEe9QqUghycR4"
 }
 ```
 

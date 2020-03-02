@@ -1,5 +1,6 @@
 const request = require('supertest');
 const server = require('../../api/server');
+const db = require('../../data/connection');
 
 
 
@@ -27,6 +28,11 @@ describe("Register Route Testing", () => {
     });
 
     describe('POST /register', () => {
+
+        beforeEach(async () => {
+            await db('users').truncate();
+        });
+
 
         describe('POST /register data validation', () => {
 
@@ -56,6 +62,11 @@ describe("Register Route Testing", () => {
         });
     
         describe('POST /register add new user', () => {
+
+            afterEach(async () => {
+                await db('users').truncate();
+            });
+
             it("add user to db and return json", async () => {
                 const res = await request(server).post('/api/register')
                 .send({
@@ -66,10 +77,9 @@ describe("Register Route Testing", () => {
                 .set('Accept', 'application/json')
 
                 expect(res.status).toBe(201);
-                // expect(res.body.username).toBe('johnDoe');
+                expect(res.body.user[0].username).toBe('johnDoe');
             });
-        })
-
+        });
     });
    
 });
