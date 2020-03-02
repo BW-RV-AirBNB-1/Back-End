@@ -27,19 +27,49 @@ describe("Register Route Testing", () => {
     });
 
     describe('POST /register', () => {
-        
-        it("add user to db and return json", async () => {
-            const res = await request(server).post('/api/register')
-            .send({
-               "username": "johnDoe",
-               "password": "password12345",
-               "is_land_owner": true
-            })
-            .set('Accept', 'application/json')
 
-            expect(res.status).toBe(201);
-            expect(res.body.username).toBe('johnDoe');
+        describe('POST /register data validation', () => {
+
+            it("should return 400 on username validate error", async () => {
+                const res = await request(server).post('/api/register')
+                .send({
+                    "username": "john",
+                    "password": "password12345",
+                    "is_land_owner": true
+                 })
+    
+                 expect(res.status).toBe(400);
+                 expect(res.body.message).toMatch(/invalid entry/i)
+            });
+    
+            it("should return 400 on password validate error", async () => {
+                const res = await request(server).post('/api/register')
+                .send({
+                    "username": "johnDoe",
+                    "password": "pass",
+                    "is_land_owner": true
+                 })
+    
+                 expect(res.status).toBe(400);
+                 expect(res.body.message).toMatch(/invalid entry/i)
+            });
         });
+    
+
+        describe('POST /register add new user', () => {
+            it("add user to db and return json", async () => {
+                const res = await request(server).post('/api/register')
+                .send({
+                "username": "johnDoe",
+                "password": "password12345",
+                "is_land_owner": true
+                })
+                .set('Accept', 'application/json')
+
+                expect(res.status).toBe(201);
+                expect(res.body.username).toBe('johnDoe');
+            });
+        })
 
     });
    
