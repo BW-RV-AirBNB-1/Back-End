@@ -24,14 +24,12 @@ describe("Users", () => {
         });
     });
 
-    describe('POST /Register', () => {
+    describe('GET /:id', () => {
 
-        it("should return created user", async () => {
-            const res = await request(server).post('/api/users/register')
+        it("Should return 200 OK", async () => {
+            const res = await request(server).get('/api/users/1')
 
-            
-
+            expect(res.body.username).toBe("testMcTesty");
         });
-
-    });
+    })
 });
