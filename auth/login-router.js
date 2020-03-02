@@ -28,6 +28,7 @@ router.post('/', validateUser, (req, res) => {
         }
     })
     .catch(({name, message, stack, code}) => {
+        console.log(user);
         res.status(500).json({ 
             error: 'There was an retrieving user.',
             name: name,

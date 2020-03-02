@@ -34,7 +34,7 @@ describe("Login Router", () => {
 
         describe('POST /login data validation', () => {
 
-            it("should return 400 on username failure ", async () => {
+            it("should return 400 on username validation ", async () => {
                 const res = await request(server).post('/api/login')
                 .send({
                     "username": "jack",
@@ -46,7 +46,7 @@ describe("Login Router", () => {
                 expect(res.body.message).toMatch(/invalid entry/i);
             });
 
-            it("should return 400 on password failure ", async () => {
+            it("should return 400 on password validation ", async () => {
                 const res = await request(server).post('/api/login')
                 .send({
                     "username": "jackDoeHam",
@@ -91,19 +91,33 @@ describe("Login Router", () => {
                     "password": "password12345"
                 });
                 
+                expect(res.type).toMatch(/json/i);
                 expect(res.body.user.username).toBe("johnDoeham");
+                expect(res.body).toHaveProperty("token");
                 
+            });
+
+            it("returns 400 on bad username", async () => {  
+                const res = await request(server).post('/api/login')
+                .send({
+                    "username": "johnDoeassdHam",
+                    "password": "password12345"
+                });
+
+                expect(res.status).toBe(400);
+                expect(res.body.message).toMatch(/invalid/i);
             });
             
             it("returns 400 on bad password", async () => {  
                 const res = await request(server).post('/api/login')
                 .send({
                     "username": "johnDoeHam",
-                    "password": "password1234556"
+                    "password": "password123455623243"
                 });
 
                 expect(res.status).toBe(400);
-            })
+                expect(res.body.message).toMatch(/invalid/i);
+            });
         });
     });
 })
