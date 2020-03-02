@@ -36,7 +36,7 @@ Provide username, password, and is_land_owner to be created. Password should be 
 {
     "username": "[string max: 255 char]",
     "password": "[string]",
-    "is_land_owner": [boolean, 0 = F/ 1 = T]
+    "is_land_owner": [boolean]
 }
 
 ```
@@ -46,7 +46,7 @@ Provide username, password, and is_land_owner to be created. Password should be 
 {
     "username": "testyMcTesty",
     "password": "passWord1@3&8",
-    "is_land_owner": 0 (false) or 1 (true)
+    "is_land_owner": false
 }
 ```
 
@@ -145,7 +145,7 @@ Provide username and password to be authenticated. Password should be a string.
 {
   id: 1,
   username: 'TestyMcTesty',
-  is_land_owner: 1 (true),
+  is_land_owner: true,
   token: 'eyJhbGciOiJIUzI1NiIs.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF.SflKxwRJSMeKKF2QT4fw'
 }
 ```
