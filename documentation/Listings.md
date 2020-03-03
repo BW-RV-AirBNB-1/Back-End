@@ -384,16 +384,19 @@ Land Owner is a user account that has is_land_owner = true.
 
 **Data Example:** 
 ```
-{
-    "state_id": 34,
-    "landowner_id": 3,
-    "title": "Rent This Land Here.",
-    "description": "34 x 45 lot, free cable, free wifi, sewer accees.",
-    "price_per_day": 53.99,
-    "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q ",
-    "longitude": "40.7128 N",
-    "latitude": "74.0060 W"
-}
+[
+    {
+        "id": 5,
+        "title": "title example 5",
+        "description": "title desc example 5",
+        "price_per_day": "58.00",
+        "user_id": 2,
+        "state_id": 25,
+        "photo_url": "asdasasasd",
+        "longitude": null,
+        "latitude": null
+    }
+]
 ```
 
 ## Success Response
@@ -406,12 +409,13 @@ Land Owner is a user account that has is_land_owner = true.
 ```
 [
     {
-        "state_id": 34,
-        "landowner_id": 3,
-        "title": "Rent This Land Here.",
-        "description": "34 x 45 lot, free cable, free wifi, sewer accees.",
-        "price_per_day": 53.99,
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q ",
+        "id": 6,
+        "title": "title example 6",
+        "description": "title desc example 6",
+        "price_per_day": "58.00",
+        "user_id": 2,
+        "state_id": 25,
+        "photo_url": "asdasasasd",
         "longitude": "40.7128 N",
         "latitude": "74.0060 W"
     }
