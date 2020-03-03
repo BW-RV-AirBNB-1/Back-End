@@ -15,7 +15,7 @@ router.post('/', validateUser, (req, res) => {
     let user = req.body;
     const token = Token.generateToken(user.username);
 
-    const salt = bcrypt.genSaltSync(14);
+    const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(user.password, salt);
 
     user.password = hash;
