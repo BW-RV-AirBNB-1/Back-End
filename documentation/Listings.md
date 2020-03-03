@@ -60,14 +60,17 @@ See an individual lising by its' ID.
 ```
 [
     {
-        id: 1,
-        state_id: 1,
-        title: 'Lorem Ipsum',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
-        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
-        price_per_day: 24.99,
-        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
-        landowner_id: 2
+        "id": 1,
+        "title": "test title 1",
+        "description": "this is a test description for 1",
+        "price_per_day": "24.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "testyMcTesty",
+        "land_owner": true,
+        "state": "Utah",
+        "state_abbrv": "UT"
     }
 ]
 ```
@@ -244,7 +247,7 @@ Land Owner is a user account that has is_land_owner = true.
 
 ---
 
-**URL:** `/api/listings/landowner/:landowner_id`
+**URL:** `/api/listings/owner/:landowner_id`
 
 **Method:** `GET`
 
@@ -278,26 +281,32 @@ Land Owner is a user account that has is_land_owner = true.
 ```
 [
     {
-        id: 2,
-        landowner_id: 1,
-        state_id: 23,
-        title: 'Lorem Ipsum',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
-        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
-        price_per_day: 54.99,
-        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',    
+        "id": 4,
+        "title": "test title 4",
+        "description": "this is a test description for 4",
+        "price_per_day": "25.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "testyMcTesty",
+        "land_owner": true,
+        "state": "North Carolina",
+        "state_abbrv": "NC"
     },
     {
-        id: 3,
-        landowner_id: 1,
-        state_id: 13,
-        title: 'Lorem Ipsum',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
-        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
-        price_per_day: 19.99,
-        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
+        "id": 1,
+        "title": "test title 1",
+        "description": "this is a test description for 1",
+        "price_per_day": "24.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "testyMcTesty",
+        "land_owner": true,
+        "state": "Utah",
+        "state_abbrv": "UT"
     },
-    ...
+    ....
 ]
 ```
 ## Error Response
@@ -454,7 +463,7 @@ Land Owner is a user account that has is_land_owner = true.
 
 **URL:** `/api/listings/:listing_id`
 
-**Method:** `POST`
+**Method:** `PUT`
 
 **Auth required:** `YES`
 

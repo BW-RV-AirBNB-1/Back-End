@@ -20,7 +20,7 @@ router.get('/', (req, res) =>{
 router.get('/:id', (req, res) => {
     Listings.findListingById(req.params.id)
     .then(listing => {
-        
+
         if(listing){
             res.status(200).json(listing)
         }else{
@@ -36,6 +36,17 @@ router.get('/:id', (req, res) => {
             code: code
         });
     });
+});
+
+router.get('/owner/:id', (req, res) => {
+    Listings.findListingByOwnerId(req.params.id)
+    .then(listing => {
+        if(listing){
+            res.status(200).json(listing);
+        }else{
+            res.status(404).json({message: 'Listings for that owner does not exist.'})
+        }
+    })
 })
 
 router.post('/', (req, res) => {
