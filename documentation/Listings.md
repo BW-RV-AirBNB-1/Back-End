@@ -457,9 +457,9 @@ n/a
 
 Land Owner can update a listing. 
 
-Return all data values that exist to their properties and only change the ones that need updating. 
+Use only the data properties you wish to update.  For example, if you only wish to update the title, and state. Those would be the only
+data properties you would return to the database.
 
-Failure to return the data values will either give it a null value or return an error.
 
 Land Owner is a user account that has is_land_owner = true.
 
@@ -479,7 +479,6 @@ Land Owner is a user account that has is_land_owner = true.
 
 **Data Constraints:** 
 
-**Required Fields:** state_id, landowner_id, title, description, price_per_day
 
 ```
 {
@@ -495,16 +494,35 @@ Land Owner is a user account that has is_land_owner = true.
 ```
 
 **Data Example:** 
+
+
+**ORIGINAL LISTING**
+
+```
+[
+    {
+        "id": 1,
+        "title": "no longer a test title",
+        "description": "this is a test description for 1",
+        "price_per_day": "24.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "testyMcTesty",
+        "land_owner": true,
+        "state": "Massachusetts",
+        "state_abbrv": "MA"
+    }
+]
+```
+
+
+**If I wanted to update the fields state_id and title, this would be my request.**
+
 ```
 {
     "state_id": 34,
-    "landowner_id": 3,
     "title": "Rent This Land Here.",
-    "description": "34 x 45 lot, free cable, free wifi, sewer accees.",
-    "price_per_day": 53.99,
-    "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q ",
-    "longitude": "40.7128 N",
-    "latitude": "74.0060 W"
 }
 ```
 
@@ -518,14 +536,17 @@ Land Owner is a user account that has is_land_owner = true.
 ```
 [
     {
-        "state_id": 34,
-        "landowner_id": 3,
-        "title": "Rent This Land Here.",
-        "description": "34 x 45 lot, free cable, free wifi, sewer accees.",
-        "price_per_day": 53.99,
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q ",
-        "longitude": "40.7128 N",
-        "latitude": "74.0060 W"
+        "id": 1,
+        "title": "Rent This Land Here",
+        "description": "this is a test description for 1",
+        "price_per_day": "24.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "testyMcTesty",
+        "land_owner": true,
+        "state": "Massachusetts",
+        "state_abbrv": "MA"
     }
 ]
 ```
@@ -626,7 +647,7 @@ Land Owner is a user account that has is_land_owner = 1 (true).
 ```
 [
     {
-        message: "Listing Deleted"
+        message: "Listing ID: 'listing_id' Deleted"
     }
 ]
 ```

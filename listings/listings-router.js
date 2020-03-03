@@ -8,7 +8,7 @@ router.get('/', (req, res) =>{
     })
     .catch(({name, message, stack, code}) => {
         res.status(500).json({ 
-            error: 'There was an getting the listings.',
+            error: 'There was an error fetching the listings.',
             name: name,
             message: message,
             stack: stack,
@@ -29,7 +29,7 @@ router.get('/:id', (req, res) => {
     })
     .catch(({name, message, stack, code}) => {
         res.status(500).json({ 
-            error: 'There was an issue creating listing.',
+            error: 'There was an error fetching the listing.',
             name: name,
             message: message,
             stack: stack,
@@ -47,6 +47,15 @@ router.get('/owner/:id', (req, res) => {
             res.status(404).json({message: 'Listings for that owner does not exist.'})
         }
     })
+    .catch(({name, message, stack, code}) => {
+        res.status(500).json({ 
+            error: `There was an error fetching owner's listings.`,
+            name: name,
+            message: message,
+            stack: stack,
+            code: code
+        });
+    });
 })
 
 router.post('/', (req, res) => {
@@ -56,7 +65,7 @@ router.post('/', (req, res) => {
     })
     .catch(({name, message, stack, code}) => {
         res.status(500).json({ 
-            error: 'There was an issue creating listing.',
+            error: 'There was an error creating listing.',
             name: name,
             message: message,
             stack: stack,
@@ -65,6 +74,45 @@ router.post('/', (req, res) => {
     });
 });
 
+router.put('/:id', (req, res) => {
+    Listings.update(req.params.id, req.body)
+    .then(listing => {
+        if(listing){
+            res.status(200).json(listing);
+        }else{
+            res.status(404).json({message: 'Listing does not exist.'})
+        }
+    })
+    .catch(({name, message, stack, code}) => {
+        res.status(500).json({ 
+            error: 'There was an error updating listing.',
+            name: name,
+            message: message,
+            stack: stack,
+            code: code
+        });
+    });
+});
+
+router.delete('/:id', (req, res) => {
+        Listings.del(req.params.id)
+        .then(listing => {
+            if(listing){
+                res.status(200).json({message: `Listing ID: ${req.params.id} deleted.`});
+            }else{
+                res.status(404).json({message: 'Listing does not exist.'})
+            }   
+        })
+        .catch(({name, message, stack, code}) => {
+            res.status(500).json({ 
+                error: 'There was an error deleting listing.',
+                name: name,
+                message: message,
+                stack: stack,
+                code: code
+            });
+        });
+})
 
 
 

@@ -4,6 +4,8 @@ const db = require('../data/connection');
 module.exports = {
     all,
     add,
+    update,
+    del,
     findListingById,
     findListingByOwnerId
 }
@@ -79,3 +81,20 @@ function add(listing){
     .insert(listing);
 }
 
+
+//PUT or Update a listing
+function update(id, body){
+
+    return db('listings')
+    .where('id', id)
+    .returning(['id', 'title', 'description', 'price_per_day', 'user_id', 'state_id', 'photo_url', 'longitude', 'latitude'])
+    .update(body);
+    
+}
+
+//DELETE LISTING
+function del(id){
+    return db('listings')
+    .where('id', id)
+    .del();
+}
