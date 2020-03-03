@@ -574,19 +574,19 @@ Land Owner is a user account that has is_land_owner = true.
     Error: 'Logged in user has no access.'
 }
 ```
+
 ### OR
 
-**Condition:**  If a required field does not recieve data or data value = null.
+**Condition:**  If there is invalid data being passed.
 
 **Code:**  `400 BAD REQUEST`
 
 **Content Example:**
 ```
 {
-    Error: "Missing Required Field."
+    Message: "Invalid Entry. Please enter valid data."
 }
 ```
-
 ### OR
 
 **Condition:**  If listing doesn't exist.
