@@ -1,7 +1,20 @@
+const knexCleaner = require('knex-cleaner');
 const request = require('supertest');
 const server = require('../../api/server');
 const db = require('../../data/connection');
 
+const knex = require('knex')({
+    client: 'pg',
+    connection: {
+        host: 'postgresql://localhost',
+        database: 'rv-airbnbtesting'
+    }
+});
+
+const options = {
+    mode: 'truncate',
+    restartIdentity: true
+}
 
 describe("Login Router", () => {
 
@@ -70,8 +83,10 @@ describe("Login Router", () => {
                 });
             });
     
-            afterEach(async () => {
-                await db('users').truncate();
+            afterEach(() => {
+              knexCleaner.clean(knex, options).then(function() {
+                        
+                  });
             });
             
             it("returns 200 OK", async () => {

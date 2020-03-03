@@ -15,8 +15,9 @@ exports.up = function(knex) {
       tbl.string('longitude', 255).nullable();
 
       //foreign key users
-      tbl.integer('owner_id')
+      tbl.integer('user_id')
       .unsigned()
+      .notNullable()
       .references('id')
       .inTable('users')
       .onDelete('CASCADE')
@@ -25,6 +26,7 @@ exports.up = function(knex) {
       //foreign key state
       tbl.integer('state_id')
       .unsigned()
+      .notNullable()
       .references('id')
       .inTable('states')
       .onDelete('CASCADE')
@@ -37,8 +39,9 @@ exports.up = function(knex) {
       tbl.boolean('is_reserved').notNullable();
       
       //user foreign key
-      tbl.integer('owner_id')
+      tbl.integer('user_id')
       .unsigned()
+      .notNullable()
       .references('id')
       .inTable('users')
       .onDelete('CASCADE')
@@ -47,6 +50,7 @@ exports.up = function(knex) {
       //listing foreign key
       tbl.integer('listing_id')
       .unsigned()
+      .notNullable()
       .references('id')
       .inTable('listings')
       .onDelete('CASCADE')

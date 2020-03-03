@@ -1,11 +1,30 @@
-const knex = require('knex');
+const knexCleaner = require('knex-cleaner');
 const request = require('supertest');
 const server = require('../../api/server');
 const db = require('../../data/connection');
 
+const knex = require('knex')({
+    client: 'pg',
+    connection: {
+        host: 'postgresql://localhost',
+        database: 'rv-airbnbtesting'
+    }
+});
 
+const options = {
+    mode: 'truncate',
+    restartIdentity: true
+}
 
 describe("Register Route Testing", () => {
+
+    beforeEach(() => {
+        beforeAll( () => {
+            knexCleaner.clean(knex, options).then(function() {
+                        
+            });
+        });
+    });
 
     describe("Get /", () => {
         
@@ -29,10 +48,6 @@ describe("Register Route Testing", () => {
     });
 
     describe('POST /register', () => {
-
-        beforeEach(async () => {
-            await db('users').truncate();
-        });
 
 
         describe('POST /register data validation', () => {
@@ -63,20 +78,20 @@ describe("Register Route Testing", () => {
         });
     
         describe('POST /register add new user', () => {
-
-            afterEach(async () => {
-                await db('users').truncate();
-            });
+        
 
             it("add user to db and return json", async () => {
+               
+
                 const res = await request(server).post('/api/register')
                 .send({
-                "username": "johnDoe",
-                "password": "password12345",
-                "is_land_owner": true
+                    "username": "johnDoe",
+                    "password": "password12345",
+                    "is_land_owner": true
                 })
                 .set('Accept', 'application/json')
 
+                console.log(res.body)
                 expect(res.status).toBe(201);
                 expect(res.body.user[0].username).toBe('johnDoe');
             });
