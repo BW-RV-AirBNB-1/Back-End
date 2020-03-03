@@ -30,7 +30,12 @@ JWT token is created for authentication incase of redirect to restricted area su
 **URL Params:**  `n/a`
 
 **Data Constraints:** 
-Provide username, password, and is_land_owner to be created. Password should be a string.  
+
+* Username, password, and is_land_owner  are required. 
+* Password should be a string. 
+* **Username must be a minimum of 5 characters or validation will fail.**
+* **Password must be a minimum of 6 characters or validation will fail.**
+
 
 ```
 {
