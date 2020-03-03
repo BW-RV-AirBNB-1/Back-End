@@ -60,7 +60,7 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return knex.schema
+  .dropTableIfExists('reservations')
   .dropTableIfExists('listings')
-  .dropTableIfExists('states')
-  .dropTableIfExists('reservations'); 
+  .dropTableIfExists('states') 
 };

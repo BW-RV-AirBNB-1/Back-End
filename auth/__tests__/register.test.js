@@ -1,30 +1,24 @@
 const knexCleaner = require('knex-cleaner');
+const knex = require('knex');
 const request = require('supertest');
 const server = require('../../api/server');
 const db = require('../../data/connection');
 
-const knex = require('knex')({
-    client: 'pg',
-    connection: {
-        host: 'postgresql://localhost',
-        database: 'rv-airbnbtesting'
-    }
-});
+// const knex = require('knex')({
+//     client: 'pg',
+//     connection: {
+//         host: 'postgresql://localhost',
+//         database: 'rv-airbnbtesting'
+//     }
+// });
 
-const options = {
-    mode: 'truncate',
-    restartIdentity: true
-}
+// const options = {
+//     mode: 'truncate',
+//     restartIdentity: true
+// }
 
 describe("Register Route Testing", () => {
 
-    beforeEach(() => {
-        beforeAll( () => {
-            knexCleaner.clean(knex, options).then(function() {
-                        
-            });
-        });
-    });
 
     describe("Get /", () => {
         
@@ -79,7 +73,12 @@ describe("Register Route Testing", () => {
     
         describe('POST /register add new user', () => {
         
-
+         
+            beforeEach(() => {
+                db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE')
+            });
+           
+            
             it("add user to db and return json", async () => {
                
 

@@ -15,3 +15,4 @@ function add(listing){
     .returning(['id', 'title', 'description', 'price_per_day', 'user_id', 'state_id', 'photo_url' ])
     .insert(listing);
 }
+

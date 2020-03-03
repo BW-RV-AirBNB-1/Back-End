@@ -1,19 +1,27 @@
- exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('users').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('users').insert([
-        {
-          username: "testyMcTesty",
-          password: "password12345",
-          is_land_owner: true
-        },
-        {
-          username: "userMcUser",
-          password: "password12345",
-          is_land_owner: false
-        }
-      ]);
-    });
-};
+const bcrypt = require('bcryptjs');
+
+const salt=  bcrypt.genSaltSync(10);
+const hash = bcrypt.hashSync('password12345', salt);
+
+exports.seed = async function(knex, Promise){
+    await knex('users').del()
+    await knex.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE')
+    await knex('users').insert([
+      {
+        username: 'testyMcTesty',
+        password: hash,
+        is_land_owner: true
+      },
+      {
+        username: 'userMcUser',
+        password: hash,
+        is_land_owner: false
+      },
+      {
+        username: 'johnnyDoeDoe',
+        password: hash,
+        is_land_owner: false
+      }
+
+    ]);
+ }
