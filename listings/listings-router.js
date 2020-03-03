@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Listings = require('./listing-model');
+const validateListing = require('../middleware/validateListing');
 
 router.get('/', (req, res) =>{
     Listings.all()
@@ -58,7 +59,7 @@ router.get('/owner/:id', (req, res) => {
     });
 })
 
-router.post('/', (req, res) => {
+router.post('/', validateListing, (req, res) => {
     Listings.add(req.body)
     .then(listing => {
         res.status(200).json(listing)
@@ -74,7 +75,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', validateListing, (req, res) => {
     Listings.update(req.params.id, req.body)
     .then(listing => {
         if(listing){
