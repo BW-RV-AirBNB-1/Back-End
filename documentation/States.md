@@ -49,25 +49,30 @@ Get a list of all states for location query.
 **Content Example:**
 ```
 [
-    {
-        id: 1,
-        state_name: Alabama,
-        state_abbrv: AL
+      {
+        "id": 1,
+        "state_name": "Alabama",
+        "state_abbreviation": "AL"
     },
     {
-        id: 2,
-        state_name: Alaska,
-        state_abbrv: AK
+        "id": 2,
+        "state_name": "Alaska",
+        "state_abbreviation": "AK"
     },
     {
-        id: 3,
-        state_name: Arizona,
-        state_abbrv: AZ
+        "id": 3,
+        "state_name": "Arizona",
+        "state_abbreviation": "AZ"
     },
     {
-        id: 4,
-        state_name: Arkansas,
-        state_abbrv: AR
+        "id": 4,
+        "state_name": "Arkansas",
+        "state_abbreviation": "AR"
+    },
+    {
+        "id": 5,
+        "state_name": "California",
+        "state_abbreviation": "CA"
     },
     .....
 ]
@@ -142,11 +147,12 @@ Get an individual state by ID.
 **Content Example:**
 ```
 [
-    {
-        id: 1,
-        state_name: Alabama,
-        state_abbrv: AL
-    }
+      {
+        "id": 1,
+        "state_name": "Alabama",
+        "state_abbreviation": "AL"
+    },
+   
 ]
 ```
 ## Error Response

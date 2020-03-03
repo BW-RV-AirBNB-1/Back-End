@@ -8,7 +8,7 @@ const validateUser = require('../middleware/validateUser');
 
 
 router.get('/', (req, res) => {
-    res.status(200).json({message: '/api/login router working'});
+    res.status(200).json({message: '/api/login router working. Please check your METHOD request'});
 })
 
 router.post('/', validateUser, (req, res) => {
