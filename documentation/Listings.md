@@ -160,35 +160,44 @@ See all listings.
 **Content Example:**
 ```
 [
-    {
-        id: 1,
-        state_id: 1,
-        title: 'Lorem Ipsum',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
-        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
-        price_per_day: 24.99,
-        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
-        landowner_id: 2
+     {
+        "id": 1,
+        "title": "test title 1",
+        "description": "this is a test description for 1",
+        "price_per_day": "24.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "testyMcTesty",
+        "land_owner": true,
+        "state": "Utah",
+        "state_abbrv": "UT"
     },
     {
-        id: 2,
-        state_id: 23,
-        title: 'Lorem Ipsum',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
-        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
-        price_per_day: 54.99,
-        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
-        landowner_id: 1
+        "id": 2,
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "price_per_day": "55.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "userMcUser",
+        "land_owner": false,
+        "state": "Florida",
+        "state_abbrv": "FL"
     },
     {
-        id: 3,
-        state_id: 13,
-        title: 'Lorem Ipsum',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
-        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
-        price_per_day: 19.99,
-        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
-        landowner_id: 1
+        "id": 3,
+        "title": "test title 3",
+        "description": "this is a test description for 3",
+        "price_per_day": "99.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "johnnyDoeDoe",
+        "land_owner": false,
+        "state": "Michigan",
+        "state_abbrv": "MI"
     },
     ...
 ]
