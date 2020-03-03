@@ -3,9 +3,12 @@ const db = require('../data/connection');
 
 module.exports = {
     all,
-    add
+    add,
+    findListingById
 }
 
+
+//GET
 function all(){
     return db('listings')
     .join('users', 'listings.user_id', 'users.id' )
@@ -25,6 +28,26 @@ function all(){
     )
     .orderBy('listings.id');
 }
+
+function findListingById(id){
+    return db('listings')
+    .join('users', 'listings.user_id', 'users.id' )
+    .join('states', 'listings.state_id', 'states.id')
+    .select( 
+        'listings.id',
+        'title', 
+        'description', 
+        'price_per_day', 
+        'photo_url',
+        'latitude',
+        'longitude',
+        'username as owner',
+        'is_land_owner as land_owner',
+        'state_name as state', 
+        'state_abbreviation as state_abbrv'
+    )
+    .where('listings.id', id);
+};
 
 function add(listing){
     return db('listings')
