@@ -433,6 +433,18 @@ Land Owner is a user account that has is_land_owner = true.
     Error: 'Logged in user has no access.'
 }
 ```
+### OR
+
+**Condition:**  If there is invalid data being passed.
+
+**Code:**  `400 BAD REQUEST`
+
+**Content Example:**
+```
+{
+    Message: "Invalid Entry. Please enter valid data."
+}
+```
 
 ### OR
 
