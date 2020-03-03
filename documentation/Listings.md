@@ -60,14 +60,17 @@ See an individual lising by its' ID.
 ```
 [
     {
-        id: 1,
-        state_id: 1,
-        title: 'Lorem Ipsum',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
-        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
-        price_per_day: 24.99,
-        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
-        landowner_id: 2
+        "id": 1,
+        "title": "test title 1",
+        "description": "this is a test description for 1",
+        "price_per_day": "24.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "testyMcTesty",
+        "land_owner": true,
+        "state": "Utah",
+        "state_abbrv": "UT"
     }
 ]
 ```
@@ -160,35 +163,44 @@ See all listings.
 **Content Example:**
 ```
 [
-    {
-        id: 1,
-        state_id: 1,
-        title: 'Lorem Ipsum',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
-        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
-        price_per_day: 24.99,
-        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
-        landowner_id: 2
+     {
+        "id": 1,
+        "title": "test title 1",
+        "description": "this is a test description for 1",
+        "price_per_day": "24.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "testyMcTesty",
+        "land_owner": true,
+        "state": "Utah",
+        "state_abbrv": "UT"
     },
     {
-        id: 2,
-        state_id: 23,
-        title: 'Lorem Ipsum',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
-        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
-        price_per_day: 54.99,
-        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
-        landowner_id: 1
+        "id": 2,
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "price_per_day": "55.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "userMcUser",
+        "land_owner": false,
+        "state": "Florida",
+        "state_abbrv": "FL"
     },
     {
-        id: 3,
-        state_id: 13,
-        title: 'Lorem Ipsum',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
-        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
-        price_per_day: 19.99,
-        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
-        landowner_id: 1
+        "id": 3,
+        "title": "test title 3",
+        "description": "this is a test description for 3",
+        "price_per_day": "99.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "johnnyDoeDoe",
+        "land_owner": false,
+        "state": "Michigan",
+        "state_abbrv": "MI"
     },
     ...
 ]
@@ -235,7 +247,7 @@ Land Owner is a user account that has is_land_owner = true.
 
 ---
 
-**URL:** `/api/listings/landowner/:landowner_id`
+**URL:** `/api/listings/owner/:landowner_id`
 
 **Method:** `GET`
 
@@ -269,26 +281,32 @@ Land Owner is a user account that has is_land_owner = true.
 ```
 [
     {
-        id: 2,
-        landowner_id: 1,
-        state_id: 23,
-        title: 'Lorem Ipsum',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
-        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
-        price_per_day: 54.99,
-        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',    
+        "id": 4,
+        "title": "test title 4",
+        "description": "this is a test description for 4",
+        "price_per_day": "25.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "testyMcTesty",
+        "land_owner": true,
+        "state": "North Carolina",
+        "state_abbrv": "NC"
     },
     {
-        id: 3,
-        landowner_id: 1,
-        state_id: 13,
-        title: 'Lorem Ipsum',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet blandit est, sagittis 
-        eleifend augue luctus vitae. Cras vehicula justo enim, sit amet blandit urna suscipit sit amet.',
-        price_per_day: 19.99,
-        photo_url: 'https://unsplash.com/photos/-Avc2AiE1_Q',
+        "id": 1,
+        "title": "test title 1",
+        "description": "this is a test description for 1",
+        "price_per_day": "24.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "testyMcTesty",
+        "land_owner": true,
+        "state": "Utah",
+        "state_abbrv": "UT"
     },
-    ...
+    ....
 ]
 ```
 ## Error Response
@@ -366,16 +384,19 @@ Land Owner is a user account that has is_land_owner = true.
 
 **Data Example:** 
 ```
-{
-    "state_id": 34,
-    "landowner_id": 3,
-    "title": "Rent This Land Here.",
-    "description": "34 x 45 lot, free cable, free wifi, sewer accees.",
-    "price_per_day": 53.99,
-    "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q ",
-    "longitude": "40.7128 N",
-    "latitude": "74.0060 W"
-}
+[
+    {
+        "id": 5,
+        "title": "title example 5",
+        "description": "title desc example 5",
+        "price_per_day": "58.00",
+        "user_id": 2,
+        "state_id": 25,
+        "photo_url": "asdasasasd",
+        "longitude": null,
+        "latitude": null
+    }
+]
 ```
 
 ## Success Response
@@ -388,12 +409,13 @@ Land Owner is a user account that has is_land_owner = true.
 ```
 [
     {
-        "state_id": 34,
-        "landowner_id": 3,
-        "title": "Rent This Land Here.",
-        "description": "34 x 45 lot, free cable, free wifi, sewer accees.",
-        "price_per_day": 53.99,
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q ",
+        "id": 6,
+        "title": "title example 6",
+        "description": "title desc example 6",
+        "price_per_day": "58.00",
+        "user_id": 2,
+        "state_id": 25,
+        "photo_url": "asdasasasd",
         "longitude": "40.7128 N",
         "latitude": "74.0060 W"
     }
@@ -409,6 +431,18 @@ Land Owner is a user account that has is_land_owner = true.
 ```
 {
     Error: 'Logged in user has no access.'
+}
+```
+### OR
+
+**Condition:**  If there is invalid data being passed.
+
+**Code:**  `400 BAD REQUEST`
+
+**Content Example:**
+```
+{
+    Message: "Invalid Entry. Please enter valid data."
 }
 ```
 
@@ -435,9 +469,9 @@ n/a
 
 Land Owner can update a listing. 
 
-Return all data values that exist to their properties and only change the ones that need updating. 
+Use only the data properties you wish to update.  For example, if you only wish to update the title, and state. Those would be the only
+data properties you would return to the database.
 
-Failure to return the data values will either give it a null value or return an error.
 
 Land Owner is a user account that has is_land_owner = true.
 
@@ -445,7 +479,7 @@ Land Owner is a user account that has is_land_owner = true.
 
 **URL:** `/api/listings/:listing_id`
 
-**Method:** `POST`
+**Method:** `PUT`
 
 **Auth required:** `YES`
 
@@ -457,7 +491,6 @@ Land Owner is a user account that has is_land_owner = true.
 
 **Data Constraints:** 
 
-**Required Fields:** state_id, landowner_id, title, description, price_per_day
 
 ```
 {
@@ -473,16 +506,35 @@ Land Owner is a user account that has is_land_owner = true.
 ```
 
 **Data Example:** 
+
+
+**ORIGINAL LISTING**
+
+```
+[
+    {
+        "id": 1,
+        "title": "no longer a test title",
+        "description": "this is a test description for 1",
+        "price_per_day": "24.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "testyMcTesty",
+        "land_owner": true,
+        "state": "Massachusetts",
+        "state_abbrv": "MA"
+    }
+]
+```
+
+
+**If I wanted to update the fields state_id and title, this would be my request.**
+
 ```
 {
     "state_id": 34,
-    "landowner_id": 3,
     "title": "Rent This Land Here.",
-    "description": "34 x 45 lot, free cable, free wifi, sewer accees.",
-    "price_per_day": 53.99,
-    "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q ",
-    "longitude": "40.7128 N",
-    "latitude": "74.0060 W"
 }
 ```
 
@@ -496,14 +548,17 @@ Land Owner is a user account that has is_land_owner = true.
 ```
 [
     {
-        "state_id": 34,
-        "landowner_id": 3,
-        "title": "Rent This Land Here.",
-        "description": "34 x 45 lot, free cable, free wifi, sewer accees.",
-        "price_per_day": 53.99,
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q ",
-        "longitude": "40.7128 N",
-        "latitude": "74.0060 W"
+        "id": 1,
+        "title": "Rent This Land Here",
+        "description": "this is a test description for 1",
+        "price_per_day": "24.99",
+        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+        "latitude": null,
+        "longitude": null,
+        "owner": "testyMcTesty",
+        "land_owner": true,
+        "state": "Massachusetts",
+        "state_abbrv": "MA"
     }
 ]
 ```
@@ -519,19 +574,19 @@ Land Owner is a user account that has is_land_owner = true.
     Error: 'Logged in user has no access.'
 }
 ```
+
 ### OR
 
-**Condition:**  If a required field does not recieve data or data value = null.
+**Condition:**  If there is invalid data being passed.
 
 **Code:**  `400 BAD REQUEST`
 
 **Content Example:**
 ```
 {
-    Error: "Missing Required Field."
+    Message: "Invalid Entry. Please enter valid data."
 }
 ```
-
 ### OR
 
 **Condition:**  If listing doesn't exist.
@@ -604,7 +659,7 @@ Land Owner is a user account that has is_land_owner = 1 (true).
 ```
 [
     {
-        message: "Listing Deleted"
+        message: "Listing ID: 'listing_id' Deleted"
     }
 ]
 ```
