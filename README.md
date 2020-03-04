@@ -52,6 +52,7 @@ https://buildwk-4-bknd-prod-coreygumbs.herokuapp.com/api/"endpoint"
 
 ![logo](./documentation/img/databaseschema.png "Database Schema")
 
+
 ## Maintainers
 
 [@CoreyGumbs](https://github.com/CoreyGumbs)
