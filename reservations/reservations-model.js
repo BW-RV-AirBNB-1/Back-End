@@ -16,10 +16,11 @@ function all(){
 function findByReservationId(id){
     return db('reservations')
     .join('users', 'reservations.user_id', 'users.id')
-    .join('listings', 'reservations.listing_id', 'listings.id')
+    .join('listings', 'reservations.listings_id', 'listings.id')
     .join('states', 'listings.state_id', 'states.id')
     .select(
-        'listing.id',
+        'reservations.id as reservation_id',
+        'listings.id as listing_id',
         'username as reservation_name', 
         'state_name as state',
         'title',
@@ -28,16 +29,17 @@ function findByReservationId(id){
         'date_from as reserved_from',
         'date_to as reserved_to'
         )
-    .where('reservation.id', id);
+    .where('reservations.id', id);
 }
 
 function findByListingId(id){
     return db('reservations')
     .join('users', 'reservations.user_id', 'users.id')
-    .join('listings', 'reservations.listing_id', 'listings.id')
+    .join('listings', 'reservations.listings_id', 'listings.id')
     .join('states', 'listings.state_id', 'states.id')
     .select(
-        'listing.id',
+        'reservations.id as reservation_id',
+        'listings.id as listing_id',
         'username as reservation_name', 
         'state_name as state',
         'title',
@@ -46,16 +48,17 @@ function findByListingId(id){
         'date_from as reserved_from',
         'date_to as reserved_to'
         )
-    .where('reservation.listing_id', id);
+    .where('reservations.listings_id', id);
 }
 
 function findByOwnerId(id){
     return db('reservations')
     .join('users', 'reservations.user_id', 'users.id')
-    .join('listings', 'reservations.listing_id', 'listings.id')
+    .join('listings', 'reservations.listings_id', 'listings.id')
     .join('states', 'listings.state_id', 'states.id')
     .select(
-        'listing.id',
+        'reservations.id as reservation_id',
+        'listings.id',
         'username as reservation_name', 
         'state_name as state',
         'title',
@@ -64,5 +67,5 @@ function findByOwnerId(id){
         'date_from as reserved_from',
         'date_to as reserved_to'
         )
-    .where('listing.user_id', id);
+    .where('listings.user_id', id);
 }
