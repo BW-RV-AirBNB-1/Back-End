@@ -38,6 +38,14 @@ describe("Listings Router", () => {
             expect(res.type).toMatch(/json/i);
         });
 
+        it("It should return json res body", async () => {
+            const res = await request(server).get('/api/listings')
+            .set('Authorization', token);
+            expect(Array.isArray(res.body)).toBe(true);
+            
+            // expect(res.body[0]).toHaveProperty('id');
+        });
+
     });
 
 });
