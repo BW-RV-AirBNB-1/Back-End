@@ -3,6 +3,7 @@ const Reservations = require('./reservations-model');
 
 
 
+//Get all reservations
 router.get('/', (req, res) => {
     Reservations.all()
     .then(reservation => {
@@ -20,6 +21,7 @@ router.get('/', (req, res) => {
 
 });
 
+//GET reservations by reservation id
 router.get('/:id', (req, res) => {
     Reservations.findByReservationId(req.params.id)
     .then(reservation => {
@@ -40,6 +42,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
+//GET Reservations by listing id
 router.get('/listing/:id', (req, res) => {
     Reservations.findByListingId(req.params.id)
     .then(reservation => {
@@ -61,6 +64,8 @@ router.get('/listing/:id', (req, res) => {
 
 });
 
+
+//GET Reservations By Owner
 router.get('/owner/:id', (req, res) => {
     Reservations.findByOwnerId(req.params.id)
     .then(reservation => {
@@ -81,7 +86,7 @@ router.get('/owner/:id', (req, res) => {
     });
 });
 
-
+//ADD Reservation to Listing
 router.post('/', (req, res) => {
     Reservations.add(req.body)
     .then(reservation => {
@@ -100,7 +105,7 @@ router.post('/', (req, res) => {
 
 //UPDATE 
 router.put('/:id', (req, res) => {
-    Reservations.add(req.body)
+    Reservations.update(req.params.id, req.body)
     .then(reservation => {
         res.status(201).json(reservation)  
     })
@@ -114,6 +119,27 @@ router.put('/:id', (req, res) => {
         });
     });
 });
+
+//Delete
+router.delete('/:id', (req, res) => {
+    Reservations.del(req.params.id)
+    .then(listing => {
+        if(listing){
+            res.status(200).json({message: `Reservation ID: ${req.params.id} deleted.`});
+        }else{
+            res.status(404).json({message: 'Reservation does not exist.'})
+        }   
+    })
+    .catch(({name, message, stack, code}) => {
+        res.status(500).json({ 
+            error: 'There was an error deleting reservation.',
+            name: name,
+            message: message,
+            stack: stack,
+            code: code
+        });
+    });
+})
 
 module.exports = router;
 

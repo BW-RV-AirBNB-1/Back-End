@@ -75,7 +75,7 @@ router.post('/', validateListing, (req, res) => {
     });
 });
 
-router.put('/:id', validateListing, (req, res) => {
+router.put('/:id', (req, res) => {
     Listings.update(req.params.id, req.body)
     .then(listing => {
         if(listing){

@@ -3,10 +3,11 @@ const db = require('../data/connection');
 module.exports = {
     all,
     add,
+    del,
     findByReservationId,
     findByListingId,
-    findByOwnerId
-
+    findByOwnerId,
+    update
 }
 
 //GET ALL Reservations
@@ -81,6 +82,20 @@ function findByOwnerId(id){
 //ADD a reservation
 function add(body){
     return db('reservations')
-    .returning(['id', 'is_reserved', 'date_from', 'date_to'])
+    .returning(['id as reservations_id', 'is_reserved', 'date_from', 'date_to'])
     .insert(body);
+}
+
+//Update a reservatin
+function update(id, body){
+    return db('reservations')
+    .where('id', id)
+    .returning(['id as reservations_id', 'is_reserved', 'date_from', 'date_to'])
+    .update(body) 
+}
+
+function del(id){
+    return db('reservations')
+    .where('id', id)
+    .del();
 }
