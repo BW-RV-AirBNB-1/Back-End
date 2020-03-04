@@ -1,21 +1,6 @@
-
-const knexCleaner = require('knex-cleaner');
 const request = require('supertest');
 const server = require('../../api/server');
 const db = require('../../data/connection');
-
-// const knex = require('knex')({
-//     client: 'pg',
-//     connection: {
-//         host: 'postgresql://localhost',
-//         database: 'rv-airbnbtesting'
-//     }
-// });
-
-// const options = {
-//     mode: 'truncate',
-//     restartIdentity: true
-// }
 
 describe("Login Router", () => {
 
@@ -76,6 +61,7 @@ describe("Login Router", () => {
         describe("POST /login", () => {
 
             beforeEach(async () => {
+
                 const res = await request(server).post('/api/register')
                 .send({
                     "username": "johnDoeham",
@@ -86,12 +72,8 @@ describe("Login Router", () => {
 
             afterEach(async () => {
                 await db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE')
-                await db.seed.run()
             });
     
-            afterEach(() => {
-                db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE')
-            });
             
             it("returns 200 OK", async () => {
                 const res = await request(server).post('/api/login')
