@@ -79,7 +79,41 @@ router.get('/owner/:id', (req, res) => {
             code: code
         });
     });
-})
+});
+
+
+router.post('/', (req, res) => {
+    Reservations.add(req.body)
+    .then(reservation => {
+        res.status(201).json(reservation)  
+    })
+    .catch(({name, message, stack, code}) => {
+        res.status(500).json({ 
+            error: 'There was an error finding the reservation.',
+            name: name,
+            message: message,
+            stack: stack,
+            code: code
+        });
+    });
+});
+
+//UPDATE 
+router.put('/:id', (req, res) => {
+    Reservations.add(req.body)
+    .then(reservation => {
+        res.status(201).json(reservation)  
+    })
+    .catch(({name, message, stack, code}) => {
+        res.status(500).json({ 
+            error: 'There was an error finding the reservation.',
+            name: name,
+            message: message,
+            stack: stack,
+            code: code
+        });
+    });
+});
 
 module.exports = router;
 
