@@ -493,11 +493,11 @@ Add a reservation to a listing.
 
 **Data Example:** 
 
-Date_From & Date_To can accept values from calendar frameworks
+Date_From & Date_To can accept values from calendar frameworks or a string
 
 ```.javascript
 {
-     "user_id": 2,
+    "user_id": 2,
     "listings_id": 4,
     "is_reserved": true,
     "date_from": "March 4, 2020",

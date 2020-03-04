@@ -383,20 +383,21 @@ Land Owner is a user account that has is_land_owner = true.
 
 **Data Example:**
 
+**Required Fields:** state_id, landowner_id, title, description, price_per_day
+
 ```.javascript
-[
-    {
-        "id": 5,
-        "title": "title example 5",
-        "description": "title desc example 5",
-        "price_per_day": "58.00",
-        "user_id": 2,
-        "state_id": 25,
-        "photo_url": "asdasasasd",
-        "longitude": null,
-        "latitude": null
-    }
-]
+
+{  
+    "title": "title example 5",
+    "description": "title desc example 5",
+    "price_per_day": "58.00",
+    "user_id": 2,
+    "state_id": 25,
+    "photo_url": "asdasasasd",
+    "longitude": null,
+    "latitude": null
+}
+
 ```
 
 ## Success Response
@@ -513,21 +514,19 @@ Land Owner is a user account that has is_land_owner = true.
 ORIGINAL LISTING
 
 ```.javascript
-[
-    {
-        "id": 1,
-        "title": "no longer a test title",
-        "description": "this is a test description for 1",
-        "price_per_day": "24.99",
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
-        "latitude": null,
-        "longitude": null,
-        "owner": "testyMcTesty",
-        "land_owner": true,
-        "state": "Massachusetts",
-        "state_abbrv": "MA"
-    }
-]
+
+{
+    "title": "no longer a test title",
+    "description": "this is a test description for 1",
+    "price_per_day": "24.99",
+    "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
+    "latitude": null,
+    "longitude": null,
+    "owner": "testyMcTesty",
+    "land_owner": true,
+    "state": "Massachusetts",
+    "state_abbrv": "MA"
+}
 ```
 
 **If I wanted to update the fields state_id and title, this would be my request.**
