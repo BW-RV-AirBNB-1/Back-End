@@ -73,7 +73,6 @@ describe("Login Router", () => {
                 await db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE')
             });
     
-            
             it("returns 200 OK", async () => {
                 const res = await request(server).post('/api/login')
                 .send({
