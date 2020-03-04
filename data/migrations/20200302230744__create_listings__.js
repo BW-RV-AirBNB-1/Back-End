@@ -34,9 +34,9 @@ exports.up = function(knex) {
   })
   .createTable('reservations', tbl => {
       tbl.increments();
-      tbl.string('date_from').nullable();
-      tbl.string('date_to').nullable();
-      tbl.boolean('is_reserved').notNullable();
+      tbl.string('date_from').notNullable().defaultTo('None').index();
+      tbl.string('date_to').notNullable().defaultTo('None').index();
+      tbl.boolean('is_reserved').notNullable().defaultTo(false);
       
       //user foreign key
       tbl.integer('user_id')
@@ -48,7 +48,7 @@ exports.up = function(knex) {
       .onUpdate('CASCADE')
 
       //listing foreign key
-      tbl.integer('listing_id')
+      tbl.integer('listings_id')
       .unsigned()
       .notNullable()
       .references('id')

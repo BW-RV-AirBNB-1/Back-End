@@ -39,5 +39,4 @@ router.post('/', validateUser, (req, res) => {
     });
 })
 
-
 module.exports = router;
