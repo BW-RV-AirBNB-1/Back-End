@@ -50,7 +50,7 @@ https://buildwk-4-bknd-prod-coreygumbs.herokuapp.com/api/"endpoint"
 
 ## Database Schema
 
-![logo](https://github.com/BW-RV-AirBNB-1/Back-End/blob/documentation/img/databaseschema.png "Database Schema")
+![logo](https://github.com/BW-RV-AirBNB-1/Back-End/documentation/img/databaseschema.png "Database Schema")
 
 ## Maintainers
 
