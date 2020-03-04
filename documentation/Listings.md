@@ -371,7 +371,7 @@ Land Owner is a user account that has is_land_owner = true.
 ```.javascript
 {
     "state_id": "[integer, not nullable]",
-    "landowner_id": [integer, not nullable]",
+    "user_id": [integer, not nullable]",
     "title": "[string max: 255 char not nullable]",
     "description": "[text max: 500char, not nullable]",
     "price_per_day": "[float (decimal), not nullable]",
@@ -498,7 +498,7 @@ Land Owner is a user account that has is_land_owner = true.
 ```.javascript
 {
     "state_id": "[integer, not nullable]",
-    "landowner_id": [integer, not nullable]",
+    "user_id": [integer, not nullable]",
     "title": "[string max: 255 char not nullable]",
     "description": "[text max: 500char, not nullable]",
     "price_per_day": "[float (decimal), not nullable]",

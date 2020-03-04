@@ -10,9 +10,9 @@ The state's id value is used in the states_id column of the listings endpoint. [
 
 * [Home](../README.md)
 * [Table of States](#table-of-states)
-* [Get All States](#show-all-states)
-* [Get State By ID](#get-state-by-id)
-* [Get Listings By State](#get-listings-by-state)
+* [GET All States](#get-all-states)
+* [GET State By ID](#get-state-by-id)
+* [GET Listings By State](#get-listings-by-state)
 
 ## Table of States
 
@@ -70,7 +70,7 @@ The state's id value is used in the states_id column of the listings endpoint. [
 |  50  | Wisconsin  | WI          |
 |  51  | Wyoming    | WY          |
 
-## Show All States
+## GET All States
 
 Get a list of all states for location query.
 
@@ -170,7 +170,7 @@ Get a list of all states for location query.
 
 [Back To Top](#states)
 
-## Get State By ID
+## GET State By ID
 
 Get an individual state by ID.
 
@@ -263,7 +263,7 @@ Get an individual state by ID.
 
 [Back To Top](#states)
 
-## Get Listings By State
+## GET Listings By State
 
 Query all listings by state.
 

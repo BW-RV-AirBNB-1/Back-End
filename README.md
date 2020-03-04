@@ -17,30 +17,35 @@ The API for RV Camping Air BnB.
 
 ## Install
 
-```
+```.javascript
 npm install
 ```
 
 ## Usage
+
 API endpoints for accessing data for web and mobile applications.
-```
+
+```.javascript
 local deployment: localhost:5000/api/"endpoint"
 ```
-Staging Server: 
-```
+
+Staging Server:
+
+```.javascript
 https://build-wk-4-backend-coreygumbs.herokuapp.com/api/"endpoint"
 ```
 
-Production Server: 
-```
+Production Server:
+
+```.javascript
 https://buildwk-4-bknd-prod-coreygumbs.herokuapp.com/api/"endpoint"
 ```
 
 ## API
 
-* [Users Auth (Login, Register)](./documentation/UsersAuth.md)
-* [Listings](./documentation/Listings.md)
-* [States](./documentation/States.md)
+- [Users Auth (Login, Register)](./documentation/UsersAuth.md)
+- [Listings](./documentation/Listings.md)
+- [States](./documentation/States.md)
 
 ## Database Schema
 

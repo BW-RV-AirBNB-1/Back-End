@@ -1,23 +1,22 @@
-# Auth - User Accounts
+# Auth User Accounts
 
-All authentication endpoints are listed on this page. 
+All authentication endpoints are listed on this page.
 
-### Table Of Contents
+## Table Of Contents
 
 * [Home](../README.md)
-* [Register](#register)
-* [Login](#login)
+* [POST Register](#post-register)
+* [POST Login](#post-login)
 
-# Register
+## POST Register
 
-Creates a new user account if one does not already exists. 
+Creates a new user account if one does not already exists.
 
 Each username is unique and there can only be one account per username.
 
 JWT token is created for authentication incase of redirect to restricted area such as a dashboard, profile, etc.
 
 ---
-
 
 **URL:** `/api/register`
 
@@ -29,15 +28,14 @@ JWT token is created for authentication incase of redirect to restricted area su
 
 **URL Params:**  `n/a`
 
-**Data Constraints:** 
+**Data Constraints:**
 
-* Username, password, and is_land_owner  are required. 
-* Password should be a string. 
-* **Username must be a minimum of 5 characters or validation will fail.**
-* **Password must be a minimum of 6 characters or validation will fail.**
+* Username, password, and is_land_owner  are required.
+* Password should be a string.
+* Username must be a minimum of 5 characters or validation will fail.**
+* Password must be a minimum of 6 characters or validation will fail.**
 
-
-```
+```.javascript
 {
     "username": "[string max: 255 char]",
     "password": "[string]",
@@ -47,7 +45,8 @@ JWT token is created for authentication incase of redirect to restricted area su
 ```
 
 **Data Example:** **All fields are required.**
-```
+
+```.javascript
 {
     "username": "testyMcTesty",
     "password": "passWord1@3&8",
@@ -62,7 +61,8 @@ JWT token is created for authentication incase of redirect to restricted area su
 **Code:**  `201 Created`
 
 **Content Example:**
-```
+
+```.javascript
 {
     "user": [
         {
@@ -74,6 +74,7 @@ JWT token is created for authentication incase of redirect to restricted area su
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODMxNzgwNzAsImV4cCI6MTU4MzI2NDQ3MH0.muXW_eKn6iZ80UqbwiROH48dQ611fhIDCQvm8Hu-2EE"
 }
 ```
+
 ## Error Response
 
 **Condition:**  If account already exists.
@@ -81,7 +82,8 @@ JWT token is created for authentication incase of redirect to restricted area su
 **Code:**  `403 Forbidden`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "There was a problem creating account."
 }
@@ -94,19 +96,18 @@ JWT token is created for authentication incase of redirect to restricted area su
 **Code:**  `400 BAD REQUEST`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "Missing required field."
 }
 ```
-## Notes
 
-n/a
+[Back To Top](#auth-user-accounts)
 
+## POST Login
 
-# Login
-
-Logs in and authenticates user. 
+Logs in and authenticates user.
 
 JWT token is created for authentication incase of redirect to restricted area such as a dashboard, profile, etc.
 
@@ -122,10 +123,10 @@ JWT token is created for authentication incase of redirect to restricted area su
 
 **URL Params:**  `n/a`
 
-**Data Constraints:** 
+**Data Constraints:**
 Provide username and password to be authenticated. Password should be a string.  
 
-```
+```.javascript
 {
     "username": "[string max: 255 char]",
     "password": "[string]",
@@ -135,7 +136,7 @@ Provide username and password to be authenticated. Password should be a string.
 
 **Data Example:** **All fields are required.**
 
-```
+```.javascript
 {
     "username": "testyMcTesty",
     "password": "passWord1@3&8"
@@ -150,7 +151,7 @@ Provide username and password to be authenticated. Password should be a string.
 
 **Content Example:**
 
-```
+```.javascript
 {
     "user": {
         "id": 1,
@@ -170,7 +171,7 @@ Provide username and password to be authenticated. Password should be a string.
 
 **Content Example:**
 
-```
+```.javascript
 {
     Error: "There was a problem creating account."
 }
@@ -184,12 +185,10 @@ Provide username and password to be authenticated. Password should be a string.
 
 **Content Example:**
 
-```
+```.javascript
 {
     Error: "There was a problem logging in to account."
 }
 ```
 
-## Notes
-
-n/a
+[Back To Top](#auth-user-accounts)
