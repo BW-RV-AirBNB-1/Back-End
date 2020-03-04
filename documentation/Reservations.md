@@ -1,25 +1,25 @@
 # Reservations
 
-Reservations endpoints are .
-
-When using with create listing drop down menus/forms, map through the states and use the states' id as the option value.
-
-The state's id value is used in the states_id column of the listings endpoint. [See Create Listings](./listings#create-listing)
+Reservations endpoints to query reservations in relation to users & listings.
 
 ## Table Of Conetents
 
 * [Home](../README.md)
-* [Get All States](#show-all-states)
-* [Get State By ID](#get-state-by-id)
-* [Get Listings By State](#get-listings-by-state)
+* [GET All Reservations](#show-all-reservations)
+* [GET Reservation BY ID](#get-by-reservation-id)
+* [GET Reservations For A Listing](#get-reservations-for-a-listing)
+* [GET Reservations By Owner ID](#get-reservations-by-owner-id)
+* [POST Reservation To Listing](#post-reservation-to-listing)
+* [UPDATE Reservation](#update-reservation)
+* [DELET Reservation](#delete-reservation)
 
-## Show All States
+## GET All Reservations
 
-Get a list of all states for location query.
+Get a list of all reservations.
 
 ---
 
-**URL:** `/api/states`
+**URL:** `/api/reservations`
 
 **Method:** `GET`
 
@@ -54,30 +54,38 @@ Get a list of all states for location query.
 ```.javascript
 
 [
-      {
-        "id": 1,
-        "state_name": "Alabama",
-        "state_abbreviation": "AL"
+     {
+        "reservation_id": 1,
+        "listing_id": 2,
+        "reservation_name": "testyMcTesty",
+        "state": "Michigan",
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "reserved": true,
+        "reserved_from": "March 3, 2020",
+        "reserved_to": "March 7, 2020"
     },
     {
-        "id": 2,
-        "state_name": "Alaska",
-        "state_abbreviation": "AK"
+        "reservation_id": 2,
+        "listing_id": 2,
+        "reservation_name": "userMcUser",
+        "state": "Michigan",
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "reserved": true,
+        "reserved_from": "March 23, 2020",
+        "reserved_to": "March 31, 2020"
     },
     {
-        "id": 3,
-        "state_name": "Arizona",
-        "state_abbreviation": "AZ"
-    },
-    {
-        "id": 4,
-        "state_name": "Arkansas",
-        "state_abbreviation": "AR"
-    },
-    {
-        "id": 5,
-        "state_name": "California",
-        "state_abbreviation": "CA"
+        "reservation_id": 3,
+        "listing_id": 3,
+        "reservation_name": "johnnyDoeDoe",
+        "state": "Michigan",
+        "title": "test title 3",
+        "description": "this is a test description for 3",
+        "reserved": true,
+        "reserved_from": "March 3, 2020",
+        "reserved_to": "March 7, 2020"
     },
     .....
 ]
@@ -111,15 +119,15 @@ Get a list of all states for location query.
 }
 ```
 
-[Back To Top](#states)
+[Back To Top](#reservations)
 
-## Get State By ID
+## GET By Reservation ID
 
-Get an individual state by ID.
+Get an individual reservation by ID.
 
 ---
 
-**URL:** `/api/states/:state_id`
+**URL:** `/api/registrations/:registration_id`
 
 **Method:** `GET`
 
@@ -129,7 +137,7 @@ Get an individual state by ID.
 
 * Must be authenticated user
 
-**URL Params:**  `state_id = state.id`
+**URL Params:**  `registration_id = registrations.id`
 
 **Data Constraints:** `None`
 
@@ -154,121 +162,16 @@ Get an individual state by ID.
 ```.javascript
 
 [
-      {
-        "id": 1,
-        "state_name": "Alabama",
-        "state_abbreviation": "AL"
-    },
-]
-```
-
-## Error Response
-
-**Condition:**  If user is restricted from viewing content.
-
-**Code:**  `403 Forbidden`
-
-**Content Example:**
-
-```.javascript
-{
-    Error: 'Logged in user has no access.'
-}
-```
-
-### OR
-
-**Condition:**  If state does not exists.
-
-**Code:**  `404 NOT FOUND`
-
-**Content Example:**
-
-```.javascript
-{
-    Error: 'State by that ID does not exist.'
-}
-```
-
-### OR
-
-**Condition:**  If there is an issue retrieving data.
-
-**Code:**  `500 INTERNAL SERVER ERROR`
-
-**Content Example:**
-
-```.javascript
-{
-    Error: "There was a server error."
-}
-```
-
-[Back To Top](#states)
-
-## Get Listings By State
-
-Query all listings by state.
-
----
-
-**URL:** `/api/states/location/:state_id`
-
-**Method:** `GET`
-
-**Auth required:** `YES`
-
-**Permissions required:** `YES`
-
-* Must be authenticated user
-
-**URL Params:**  `state_id = state.id`
-
-**Data Constraints:** `None`
-
-```.javascript
-{}
-```
-
-**Data Example:** `None`
-
-```.javascript
-{}
-```
-
-## Success Response
-
-**Condition:**  If everything is OK.
-
-**Code:**  `200 OK`
-
-**Content Example:**
-
-```.javascript
-[
     {
-        "listing_id": 3,
-        "owner_name": "johnnyDoeDoe",
-        "title": "test title 3",
-        "description": "this is a test description for 3",
-        "price_per_day": "99.99",
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
-        "longitude": null,
-        "latitude": null,
-        "state_name": "Michigan",
-        "state_abbreviation": "MI"
-    },
-    {
+        "reservation_id": 2,
         "listing_id": 2,
-        "owner_name": "userMcUser",
+        "reservation_name": "userMcUser",
+        "state": "Michigan",
         "title": "test title 2",
         "description": "this is a test description for 2",
-        "price_per_day": "55.99",
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
-        "longitude": null,
-        "latitude": null,
-        "state_name": "Michigan",
-        "state_abbreviation": "MI"
+        "reserved": true,
+        "reserved_from": "March 23, 2020",
+        "reserved_to": "March 31, 2020"
     }
 ]
 ```
@@ -297,7 +200,7 @@ Query all listings by state.
 
 ```.javascript
 {
-    Error: 'State by that ID does not exist.'
+    Error: 'Reservation by that ID does not exist.'
 }
 ```
 
@@ -315,4 +218,231 @@ Query all listings by state.
 }
 ```
 
-[Back To Top](#states)
+[Back To Top](#reservations)
+
+## GET Reservations By Owner ID
+
+Get all reservations associated with Owner/User ID.
+
+---
+
+**URL:** `/api/reservations/owner/:user_id`
+
+**Method:** `GET`
+
+**Auth required:** `YES`
+
+**Permissions required:** `YES`
+
+* Must be authenticated user
+
+**URL Params:**  `user_id = user.id`
+
+**Data Constraints:** `None`
+
+```.javascript
+{}
+```
+
+**Data Example:** `None`
+
+```.javascript
+{}
+```
+
+## Success Response
+
+**Condition:**  If everything is OK.
+
+**Code:**  `200 OK`
+
+**Content Example:**
+
+```.javascript
+[
+    {
+        "reservation_id": 1,
+        "listing_id": 2,
+        "reservation_name": "testyMcTesty",
+        "state": "Michigan",
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "reserved": true,
+        "reserved_from": "March 3, 2020",
+        "reserved_to": "March 7, 2020"
+    },
+    {
+        "reservation_id": 2,
+        "listing_id": 2,
+        "reservation_name": "userMcUser",
+        "state": "Michigan",
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "reserved": true,
+        "reserved_from": "March 23, 2020",
+        "reserved_to": "March 31, 2020"
+    },
+    {
+        "reservation_id": 6,
+        "listing_id": 2,
+        "reservation_name": "userMcUser",
+        "state": "Michigan",
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "reserved": true,
+        "reserved_from": "April 15, 2020",
+        "reserved_to": "April 20, 2020"
+    },
+]
+```
+
+## Error Response
+
+**Condition:**  If user is restricted from viewing content.
+
+**Code:**  `403 Forbidden`
+
+**Content Example:**
+
+```.javascript
+{
+    Error: 'Logged in user has no access.'
+}
+```
+
+### OR
+
+**Condition:**  If state does not exists.
+
+**Code:**  `404 NOT FOUND`
+
+**Content Example:**
+
+```.javascript
+{
+    Error: 'Reservation by that ID does not exist.'
+}
+```
+
+### OR
+
+**Condition:**  If there is an issue retrieving data.
+
+**Code:**  `500 INTERNAL SERVER ERROR`
+
+**Content Example:**
+
+```.javascript
+{
+    Error: "There was a server error."
+}
+```
+
+[Back To Top](#reservations)
+
+## POST Reservation To Listing
+
+Add a reservation to a listing.
+
+---
+
+**URL:** `/api/reservations/`
+
+**Method:** `POST`
+
+**Auth required:** `YES`
+
+**Permissions required:** `YES`
+
+* Must be authenticated user
+
+**URL Params:**  `None`
+
+**Data Constraints:** `None`
+
+```.javascript
+{
+    "user_id": "[integer, not nullable]",
+    "listings_id": [integer, not nullable]",
+    "is_reserved": "[boolean not nullable]",
+    "date_from": "[text 255 char, not nullable]",
+    "date_to": "[text 255 char, not nullable]",
+}
+```
+
+**Data Example:** `None`
+
+**Date_From & Date_To can accept values from calendar frameworks**
+
+```.javascript
+{
+     "user_id": 2,
+    "listings_id": 4,
+    "is_reserved": true,
+    "date_from": "March 4, 2020",
+    "date_to": "March 23, 2020",
+}
+```
+
+## Success Response
+
+**Condition:**  If everything is OK.
+
+**Code:**  `200 OK`
+
+**Content Example:**
+
+```.javascript
+[
+    {
+        "reservations_id": 10,
+        "is_reserved": true,
+        "date_from": "March 4, 2020",
+        "date_to": "March 23, 2020"
+    }
+]
+```
+
+## Error Response
+
+**Condition:**  If user is restricted from viewing content.
+
+**Code:**  `403 Forbidden`
+
+**Content Example:**
+
+```.javascript
+{
+    Error: 'Logged in user has no access.'
+}
+```
+
+### OR
+
+**Condition:**  If state does not exists.
+
+**Code:**  `404 NOT FOUND`
+
+**Content Example:**
+
+```.javascript
+{
+    Error: 'Reservation by that ID does not exist.'
+}
+```
+
+### OR
+
+**Condition:**  If there is an issue retrieving data.
+
+**Code:**  `500 INTERNAL SERVER ERROR`
+
+**Content Example:**
+
+```.javascript
+{
+    Error: "There was a server error."
+}
+```
+
+[Back To Top](#reservations)
