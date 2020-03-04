@@ -21,9 +21,9 @@ describe("Listings Router", () => {
             token = res.body.token;
         })
 
-        // afterEach(async () => {
-        //     await db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE')
-        // });
+        afterEach(async () => {
+            await db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE')
+        });
 
         it("It should return 200 OK", async () => {
             const res = await request(server).get('/api/listings')
@@ -35,7 +35,6 @@ describe("Listings Router", () => {
         it("It should return json formatted body", async () => {
             const res = await request(server).get('/api/listings')
             .set('Authorization', token);
-
             expect(res.type).toMatch(/json/i);
         });
 
