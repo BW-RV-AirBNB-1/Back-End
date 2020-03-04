@@ -16,6 +16,7 @@ function all(){
     return db('listings')
     .join('users', 'listings.user_id', 'users.id' )
     .join('states', 'listings.state_id', 'states.id')
+    .join('reservations', 'listings.id', 'reservations.listings_id')
     .select( 
         'listings.id',
         'title', 
@@ -27,7 +28,10 @@ function all(){
         'username as owner',
         'is_land_owner as land_owner',
         'state_name as state', 
-        'state_abbreviation as state_abbrv'
+        'state_abbreviation as state_abbrv',
+        'is_reserved as reservation',
+        'date_to as reserve_to',
+        'date_from as reserve_from',
     )
     .orderBy('listings.id');
 }
@@ -58,6 +62,7 @@ function findListingByOwnerId(id){
     return db('listings')
     .join('users', 'listings.user_id', 'users.id' )
     .join('states', 'listings.state_id', 'states.id')
+    .join('reservations', 'listings.id', 'reservations.listings_id')
     .select( 
         'listings.id',
         'title', 
@@ -69,7 +74,10 @@ function findListingByOwnerId(id){
         'username as owner',
         'is_land_owner as land_owner',
         'state_name as state', 
-        'state_abbreviation as state_abbrv'
+        'state_abbreviation as state_abbrv',
+        'is_reserved as reservation',
+        'date_to as reserve_to',
+        'date_from as reserve_from',
     )
     .where('listings.user_id', id);
 };
