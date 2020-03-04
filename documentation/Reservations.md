@@ -1,8 +1,8 @@
-# Reservations 
+# Reservations
 
-All Listing endpoints for RV Owners & Land Owners. 
+All Listing endpoints for RV Owners & Land Owners.
 
-### Table Of Conetents
+## Table Of Conetents
 
 * [Home](../README.md)
 * [All Users](#all-users)
