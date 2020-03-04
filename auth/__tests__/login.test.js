@@ -30,7 +30,6 @@ describe("Login Router", () => {
     
     describe("Login Auth", () => {
 
-
         describe('POST /login data validation', () => {
 
             it("should return 400 on username validation ", async () => {
@@ -74,7 +73,6 @@ describe("Login Router", () => {
                 await db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE')
             });
     
-            
             it("returns 200 OK", async () => {
                 const res = await request(server).post('/api/login')
                 .send({
