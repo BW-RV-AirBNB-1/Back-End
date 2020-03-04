@@ -127,7 +127,7 @@ Get an individual reservation by ID.
 
 ---
 
-**URL:** `/api/registrations/:registration_id`
+**URL:** `/api/reservations/:reservations_id`
 
 **Method:** `GET`
 
@@ -137,7 +137,7 @@ Get an individual reservation by ID.
 
 * Must be authenticated user
 
-**URL Params:**  `registration_id = registrations.id`
+**URL Params:**  `reservations_id = reservations.id`
 
 **Data Constraints:** `None`
 
@@ -226,7 +226,7 @@ Get an individual reservation by ID.
 
 ---
 
-**URL:** `/api/registrations/listing/:listing_id`
+**URL:** `/api/reservations/listing/:listing_id`
 
 **Method:** `GET`
 
