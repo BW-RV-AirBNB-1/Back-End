@@ -62,7 +62,7 @@ router.get('/owner/:id', (req, res) => {
 router.post('/', validateListing, (req, res) => {
     Listings.add(req.body)
     .then(listing => {
-        res.status(200).json(listing)
+        res.status(201).json(listing)
     })
     .catch(({name, message, stack, code}) => {
         res.status(500).json({ 
