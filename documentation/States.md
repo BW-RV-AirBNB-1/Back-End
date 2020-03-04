@@ -14,7 +14,7 @@ The state's id value is used in the states_id column of the listings endpoint. [
 * [Get State By ID](#get-state-by-id)
 * [Get Listings By State](#get-listings-by-state)
 
-## Table of States 
+## Table of States
 
 | ID   | State Name | State Abbr. |
 | :--- | :--------- | :-----------|
