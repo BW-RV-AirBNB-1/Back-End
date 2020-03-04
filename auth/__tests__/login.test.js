@@ -30,7 +30,6 @@ describe("Login Router", () => {
     
     describe("Login Auth", () => {
 
-
         describe('POST /login data validation', () => {
 
             it("should return 400 on username validation ", async () => {
