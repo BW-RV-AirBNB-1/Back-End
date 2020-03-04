@@ -13,8 +13,21 @@ module.exports = {
 //GET ALL Reservations
 function all(){
     return db('reservations')
-    .select('*')
-    .orderBy('reservations.date_from', 'desc');
+    .join('users', 'reservations.user_id', 'users.id')
+    .join('listings', 'reservations.listings_id', 'listings.id')
+    .join('states', 'listings.state_id', 'states.id')
+    .select(
+        'reservations.id as reservation_id',
+        'listings.id as listing_id',
+        'username as reservation_name', 
+        'state_name as state',
+        'title',
+        'description',
+        'is_reserved as reserved',
+        'date_from as reserved_from',
+        'date_to as reserved_to'
+    )
+    .orderBy('reservations.id');
     
 };
 
@@ -66,7 +79,7 @@ function findByOwnerId(id){
     .join('states', 'listings.state_id', 'states.id')
     .select(
         'reservations.id as reservation_id',
-        'listings.id',
+        'listings.id as listing_id',
         'username as reservation_name', 
         'state_name as state',
         'title',

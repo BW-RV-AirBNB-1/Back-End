@@ -1,26 +1,25 @@
-# Listings 
+# Listings
 
-All Listing endpoints for RV Owners & Land Owners. 
+All Listing endpoints for RV Owners & Land Owners.
 
-### Table Of Conetents
+## Table Of Conetents
 
 * [Home](../README.md)
 * [All Users](#all-users)
-  * [Show Listing By ID](#show-listing-by-id)
+  * [GET Listing By ID](#get-listing-by-id)
 * [RV Owners](#rv-owners)
-  * [Show All Listings](#show-all-listings)
+  * [GET All Listings](#get-all-listings)
 * [Land Owners](#land-owners)
-  * [Show All Land Owner Listings](#show-all-land-owner-listings)
-  * [Create Listing](#create-listing)
-  * [Update Listing](#update-listing)
-  * [Delete Listing](#delete-listing)
+  * [GET All Land Owner Listings](#get-all-land-owner-listings)
+  * [POST Listing](#post-listing)
+  * [UPDATE Listing](#update-listing)
+  * [DELETE Listing](#delete-listing)
 
-# All Users
+## All Users
 
 Listing Endpoints that both RV & Land Owners have access to.
 
-
-## Show Listing By ID
+## GET Listing By ID
 
 See an individual lising by its' ID.
 
@@ -39,14 +38,14 @@ See an individual lising by its' ID.
 **URL Params:**  `:listing_id =  listing.id`
 
 **Data Constraints:** `None`
- 
 
-```
+```.javascript
 {}
 ```
 
 **Data Example:** `None`
-```
+
+```.javascript
 {}
 ```
 
@@ -57,7 +56,8 @@ See an individual lising by its' ID.
 **Code:**  `200 OK`
 
 **Content Example:**
-```
+
+```.javascript
 [
     {
         "id": 1,
@@ -74,6 +74,7 @@ See an individual lising by its' ID.
     }
 ]
 ```
+
 ## Error Response
 
 **Condition:**  If user is restricted from viewing content.
@@ -81,7 +82,8 @@ See an individual lising by its' ID.
 **Code:**  `403 Forbidden`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: 'Logged in user has no access.'
 }
@@ -94,7 +96,8 @@ See an individual lising by its' ID.
 **Code:**  `404 NOT FOUND`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: 'Listing by that ID does not exist.'
 }
@@ -107,24 +110,20 @@ See an individual lising by its' ID.
 **Code:**  `500 INTERNAL SERVER ERROR`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "There was a server error."
 }
 ```
 
-## Notes
-
-n/a
-
 [Back To Top](#listings)
 
-# RV Owners
+## RV Owners
 
 Listing endpoints that only RV Owner users have access to.  RV Owner is a user account that has is_land_owner = false.
 
-
-## Show All Listings
+## GET All Listings
 
 See all listings.
 
@@ -143,14 +142,14 @@ See all listings.
 **URL Params:**  `None`
 
 **Data Constraints:** `None`
- 
 
-```
+```.javascript
 {}
 ```
 
 **Data Example:** `None`
-```
+
+```.javascript
 {}
 ```
 
@@ -161,7 +160,8 @@ See all listings.
 **Code:**  `200 OK`
 
 **Content Example:**
-```
+
+```.javascript
 [
      {
         "id": 1,
@@ -205,6 +205,7 @@ See all listings.
     ...
 ]
 ```
+
 ## Error Response
 
 **Condition:**  If is_land_owner = true, user is restricted from viewing content (Land Owners cannot view all listings).
@@ -212,7 +213,8 @@ See all listings.
 **Code:**  `403 Forbidden`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: 'Logged in user has no access.'
 }
@@ -225,23 +227,20 @@ See all listings.
 **Code:**  `500 INTERNAL SERVER ERROR`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "There was a server error."
 }
 ```
 
-## Notes
-
-n/a
-
 [Back To Top](#listings)
 
-# Land Owners
+## Land Owners
 
-## Show All Land Owner Listings
+## GET All Land Owner Listings
 
-Uses land owner id to query database and retrieve all listings associated with land owner account. 
+Uses land owner id to query database and retrieve all listings associated with land owner account.
 
 Land Owner is a user account that has is_land_owner = true.
 
@@ -260,14 +259,14 @@ Land Owner is a user account that has is_land_owner = true.
 **URL Params:**  `:landowner_id = landowner.id`
 
 **Data Constraints:** `None`
- 
 
-```
+```.javascript
 {}
 ```
 
 **Data Example:** `None`
-```
+
+```.javascript
 {}
 ```
 
@@ -278,7 +277,8 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `200 OK`
 
 **Content Example:**
-```
+
+```.javascript
 [
     {
         "id": 4,
@@ -309,6 +309,7 @@ Land Owner is a user account that has is_land_owner = true.
     ....
 ]
 ```
+
 ## Error Response
 
 **Condition:**  If is_land_owner = false, user is restricted from viewing content (Only land owner with correct id can view).
@@ -316,7 +317,8 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `403 Forbidden`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: 'Logged in user has no access.'
 }
@@ -329,25 +331,22 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `500 INTERNAL SERVER ERROR`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "There was a server error."
 }
 ```
 
-## Notes
-
-n/a
-
 [Back To Top](#listings)
 
-## Create Listing
+## POST Listing
 
-Land Owner can create a new listing. 
+Land Owner can create a new listing.
 
-State_id comes from state table which should pass the value from form. 
+State_id comes from state table which should pass the value from form.
 
-See [States endpoint](./States.md#show-all-states) for more implementation info. 
+See [States endpoint](./States.md#show-all-states) for more implementation info.
 
 Land Owner is a user account that has is_land_owner = true.
 
@@ -365,14 +364,14 @@ Land Owner is a user account that has is_land_owner = true.
 
 **URL Params:**  `None`
 
-**Data Constraints:** 
+**Data Constraints:**
 
 **Required Fields:** state_id, landowner_id, title, description, price_per_day
 
-```
+```.javascript
 {
     "state_id": "[integer, not nullable]",
-    "landowner_id": [integer, not nullable]",
+    "user_id": [integer, not nullable]",
     "title": "[string max: 255 char not nullable]",
     "description": "[text max: 500char, not nullable]",
     "price_per_day": "[float (decimal), not nullable]",
@@ -382,8 +381,9 @@ Land Owner is a user account that has is_land_owner = true.
 }
 ```
 
-**Data Example:** 
-```
+**Data Example:**
+
+```.javascript
 [
     {
         "id": 5,
@@ -406,7 +406,8 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `201 CREATED`
 
 **Content Example:**
-```
+
+```.javascript
 [
     {
         "id": 6,
@@ -421,6 +422,7 @@ Land Owner is a user account that has is_land_owner = true.
     }
 ]
 ```
+
 ## Error Response
 
 **Condition:**  If is_land_owner = false, user is restricted from creating a listing. (Only land owner can create a listing).
@@ -428,11 +430,13 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `403 Forbidden`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: 'Logged in user has no access.'
 }
 ```
+
 ### OR
 
 **Condition:**  If there is invalid data being passed.
@@ -440,7 +444,8 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `400 BAD REQUEST`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Message: "Invalid Entry. Please enter valid data."
 }
@@ -453,25 +458,24 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `500 INTERNAL SERVER ERROR`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "There was a server error."
 }
 ```
 
-## Notes
-
-n/a
-
 [Back To Top](#listings)
 
 ## Update Listing
 
-Land Owner can update a listing. 
+Land Owner can update a listing.
 
-Use only the data properties you wish to update.  For example, if you only wish to update the title, and state. Those would be the only
-data properties you would return to the database.
+Use only the data properties you wish to update.  
 
+For example, if you only wish to update the title, and state.
+
+Those would be the only data properties you would return to the database.
 
 Land Owner is a user account that has is_land_owner = true.
 
@@ -489,13 +493,12 @@ Land Owner is a user account that has is_land_owner = true.
 
 **URL Params:**  `:listing_id =  listing.id`
 
-**Data Constraints:** 
+**Data Constraints:**
 
-
-```
+```.javascript
 {
     "state_id": "[integer, not nullable]",
-    "landowner_id": [integer, not nullable]",
+    "user_id": [integer, not nullable]",
     "title": "[string max: 255 char not nullable]",
     "description": "[text max: 500char, not nullable]",
     "price_per_day": "[float (decimal), not nullable]",
@@ -505,12 +508,11 @@ Land Owner is a user account that has is_land_owner = true.
 }
 ```
 
-**Data Example:** 
+**Data Example:**
 
+ORIGINAL LISTING
 
-**ORIGINAL LISTING**
-
-```
+```.javascript
 [
     {
         "id": 1,
@@ -528,10 +530,9 @@ Land Owner is a user account that has is_land_owner = true.
 ]
 ```
 
-
 **If I wanted to update the fields state_id and title, this would be my request.**
 
-```
+```.javascript
 {
     "state_id": 34,
     "title": "Rent This Land Here.",
@@ -545,7 +546,8 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `201 CREATED`
 
 **Content Example:**
-```
+
+```.javascript
 [
     {
         "id": 1,
@@ -562,6 +564,7 @@ Land Owner is a user account that has is_land_owner = true.
     }
 ]
 ```
+
 ## Error Response
 
 **Condition:**  If is_land_owner = false, user is restricted from creating a listing. (Only land owner can update a listing).
@@ -569,7 +572,8 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `403 Forbidden`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: 'Logged in user has no access.'
 }
@@ -582,11 +586,14 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `400 BAD REQUEST`
 
 **Content Example:**
-```
+
+```.javascript
+
 {
     Message: "Invalid Entry. Please enter valid data."
 }
 ```
+
 ### OR
 
 **Condition:**  If listing doesn't exist.
@@ -594,7 +601,8 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `404 LISTING DOESNT EXIST`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "Listing Does Not Exist."
 }
@@ -607,21 +615,18 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `500 INTERNAL SERVER ERROR`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "There was a server error."
 }
 ```
 
-## Notes
-
-n/a
-
 [Back To Top](#listings)
 
 ## Delete Listing
 
-Land Owner can delete a listing. 
+Land Owner can delete a listing.
 
 Land Owner is a user account that has is_land_owner = 1 (true).
 
@@ -640,12 +645,14 @@ Land Owner is a user account that has is_land_owner = 1 (true).
 **URL Params:**  `:listing_id =  listing.id`
 
 **Data Constraints:** `None`
-```
+
+```.javascript
 {}
 ```
 
 **Data Example:** `None`
-```
+
+```.javascript
 {}
 ```
 
@@ -656,13 +663,15 @@ Land Owner is a user account that has is_land_owner = 1 (true).
 **Code:**  `200 OK`
 
 **Content Example:**
-```
+
+```.javascript
 [
     {
         message: "Listing ID: 'listing_id' Deleted"
     }
 ]
 ```
+
 ## Error Response
 
 **Condition:**  If is_land_owner = false, user is restricted from creating a listing. (Only land owner can delete a listing).
@@ -670,7 +679,8 @@ Land Owner is a user account that has is_land_owner = 1 (true).
 **Code:**  `403 Forbidden`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: 'Logged in user has no access.'
 }
@@ -683,7 +693,8 @@ Land Owner is a user account that has is_land_owner = 1 (true).
 **Code:**  `404 LISTING DOESNT EXIST`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "Listing Does Not Exist."
 }
@@ -696,14 +707,11 @@ Land Owner is a user account that has is_land_owner = 1 (true).
 **Code:**  `500 INTERNAL SERVER ERROR`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "There was a server error."
 }
 ```
-
-## Notes
-
-n/a
 
 [Back To Top](#listings)

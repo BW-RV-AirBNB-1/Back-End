@@ -9,11 +9,68 @@ The state's id value is used in the states_id column of the listings endpoint. [
 ## Table Of Conetents
 
 * [Home](../README.md)
-* [Get All States](#show-all-states)
-* [Get State By ID](#get-state-by-id)
-* [Get Listings By State](#get-listings-by-state)
+* [Table of States](#table-of-states)
+* [GET All States](#get-all-states)
+* [GET State By ID](#get-state-by-id)
+* [GET Listings By State](#get-listings-by-state)
 
-## Show All States
+## Table of States
+
+| ID   | State Name | State Abbr. |
+| :--- | :--------- | :-----------|
+|  1   | Alabama    | AL          |
+|  2   | Alaska     | AK          |
+|  3   | Arizona    | AZ          |
+|  4   | Arkansas   | AR          |
+|  5   | California | CA          |
+|  6   | Colorado   | CO          |
+|  7   | Connecticut| CT          |
+|  8   | Delaware   | DE          |
+|  9   | Disrtrict Of Columbia    | DC         |
+|  10  | Florida    | FL          |
+|  11  | Georgia    | GA          |
+|  12  | Hawaii     | HI          |
+|  13  | Idaho      | ID          |
+|  14  | Illinois   | IL          |
+|  15  | Indiana    | IN          |
+|  16  | Iowa       | IA          |
+|  17  | Kansas     | KS          |
+|  18  | Kentucky   | KY          |
+|  19  | Louisiana    | LA        |
+|  20  | Maine      | ME          |
+|  21  | Maryland   | MD          |
+|  22  | Massachusetts    | MA    |
+|  23  | Michigan   | MI          |
+|  24  | Minnesota  | MN          |
+|  25  | Mississippi| MS          |
+|  26  | Missouri   | MO          |
+|  27  | Montana    | MT          |
+|  28  | Nebraska   | NE          |
+|  29  | Nevada     | NV          |
+|  30  | New Hampshire  | NH      |
+|  31  | New Jersey | NJ          |
+|  32  | New Mexico | NM          |
+|  33  | New York   | NY          |
+|  34  | North Carolina| NC       |
+|  35  | North Dakota | ND        |
+|  36  | Ohio       | OH          |
+|  37  | Oklahoma   | OK          |
+|  38  | Oregon     | OR          |
+|  39  | Pennsylvania | PA        |
+|  40  | Rhode Island | RI        |
+|  41  | South Carolina | SC      |
+|  42  | South Dakota| SD         |
+|  43  | Tennessee  | TN          |
+|  44  | Texas      | TX          |
+|  45  | Utah       | UT          |
+|  46  | Vermont    | VT          |
+|  47  | Virginia   | VA          |
+|  48  | Washington | WA          |
+|  49  | West Virginia | WV       |
+|  50  | Wisconsin  | WI          |
+|  51  | Wyoming    | WY          |
+
+## GET All States
 
 Get a list of all states for location query.
 
@@ -111,13 +168,9 @@ Get a list of all states for location query.
 }
 ```
 
-## Notes
-
-n/a
-
 [Back To Top](#states)
 
-## Get State By ID
+## GET State By ID
 
 Get an individual state by ID.
 
@@ -208,13 +261,9 @@ Get an individual state by ID.
 }
 ```
 
-## Notes
-
-n/a
-
 [Back To Top](#states)
 
-## Get Listings By State
+## GET Listings By State
 
 Query all listings by state.
 
@@ -322,9 +371,5 @@ Query all listings by state.
     Error: "There was a server error."
 }
 ```
-
-## Notes
-
-n/a
 
 [Back To Top](#states)

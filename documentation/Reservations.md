@@ -1,32 +1,25 @@
 # Reservations
 
-All Listing endpoints for RV Owners & Land Owners.
+Reservations endpoints to query reservations in relation to users & listings.
 
 ## Table Of Conetents
 
 * [Home](../README.md)
-* [All Users](#all-users)
-  * [Show Listing By ID](#show-listing-by-id)
-* [RV Owners](#rv-owners)
-  * [Show All Listings](#show-all-listings)
-* [Land Owners](#land-owners)
-  * [Show All Land Owner Listings](#show-all-land-owner-listings)
-  * [Create Listing](#create-listing)
-  * [Update Listing](#update-listing)
-  * [Delete Listing](#delete-listing)
+* [GET All Reservations](#show-all-reservations)
+* [GET Reservation By ID](#get-by-reservation-id)
+* [GET Reservations By Listing ID](#get-reservations-by-listing-id)
+* [GET Reservations By Owner (User) ID](#get-reservations-by-owner-id)
+* [POST Reservation To Listing](#post-reservation-to-listing)
+* [UPDATE Reservation](#update-reservation)
+* [DELETE Reservation](#delete-reservation)
 
-# All Users
+## GET All Reservations
 
-Listing Endpoints that both RV & Land Owners have access to.
-
-
-## Show All Reservations
-
-See an individual lising by its' ID.
+Get a list of all reservations.
 
 ---
 
-**URL:** `/api/listings/reservations`
+**URL:** `/api/reservations`
 
 **Method:** `GET`
 
@@ -39,41 +32,65 @@ See an individual lising by its' ID.
 **URL Params:**  `None`
 
 **Data Constraints:** `None`
- 
 
-```
+```.javascript
 {}
 ```
 
 **Data Example:** `None`
-```
+
+```{.javascript}
 {}
 ```
 
 ## Success Response
 
-**Condition:**  If listing exists and everything is OK.
+**Condition:**  If everything is OK.
 
 **Code:**  `200 OK`
 
 **Content Example:**
-```
+
+```.javascript
+
 [
+     {
+        "reservation_id": 1,
+        "listing_id": 2,
+        "reservation_name": "testyMcTesty",
+        "state": "Michigan",
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "reserved": true,
+        "reserved_from": "March 3, 2020",
+        "reserved_to": "March 7, 2020"
+    },
     {
-        "id": 1,
-        "title": "test title 1",
-        "description": "this is a test description for 1",
-        "price_per_day": "24.99",
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
-        "latitude": null,
-        "longitude": null,
-        "owner": "testyMcTesty",
-        "land_owner": true,
-        "state": "Utah",
-        "state_abbrv": "UT"
-    }
+        "reservation_id": 2,
+        "listing_id": 2,
+        "reservation_name": "userMcUser",
+        "state": "Michigan",
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "reserved": true,
+        "reserved_from": "March 23, 2020",
+        "reserved_to": "March 31, 2020"
+    },
+    {
+        "reservation_id": 3,
+        "listing_id": 3,
+        "reservation_name": "johnnyDoeDoe",
+        "state": "Michigan",
+        "title": "test title 3",
+        "description": "this is a test description for 3",
+        "reserved": true,
+        "reserved_from": "March 3, 2020",
+        "reserved_to": "March 7, 2020"
+    },
+    .....
 ]
 ```
+
 ## Error Response
 
 **Condition:**  If user is restricted from viewing content.
@@ -81,7 +98,8 @@ See an individual lising by its' ID.
 **Code:**  `403 Forbidden`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: 'Logged in user has no access.'
 }
@@ -89,14 +107,100 @@ See an individual lising by its' ID.
 
 ### OR
 
-**Condition:**  If listing does not exists.
+**Condition:**  If there is an issue retrieving data.
+
+**Code:**  `500 INTERNAL SERVER ERROR`
+
+**Content Example:**
+
+```.javascript
+{
+    Error: "There was a server error."
+}
+```
+
+[Back To Top](#reservations)
+
+## GET By Reservation ID
+
+Get an individual reservation by ID.
+
+---
+
+**URL:** `/api/registrations/:registration_id`
+
+**Method:** `GET`
+
+**Auth required:** `YES`
+
+**Permissions required:** `YES`
+
+* Must be authenticated user
+
+**URL Params:**  `registration_id = registrations.id`
+
+**Data Constraints:** `None`
+
+```.javascript
+{}
+```
+
+**Data Example:** `None`
+
+```.javascript
+{}
+```
+
+## Success Response
+
+**Condition:**  If everything is OK.
+
+**Code:**  `200 OK`
+
+**Content Example:**
+
+```.javascript
+
+[
+    {
+        "reservation_id": 2,
+        "listing_id": 2,
+        "reservation_name": "userMcUser",
+        "state": "Michigan",
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "reserved": true,
+        "reserved_from": "March 23, 2020",
+        "reserved_to": "March 31, 2020"
+    }
+]
+```
+
+## Error Response
+
+**Condition:**  If user is restricted from viewing content.
+
+**Code:**  `403 Forbidden`
+
+**Content Example:**
+
+```.javascript
+{
+    Error: 'Logged in user has no access.'
+}
+```
+
+### OR
+
+**Condition:**  If reservation does not exists.
 
 **Code:**  `404 NOT FOUND`
 
 **Content Example:**
-```
+
+```.javascript
 {
-    Error: 'Listing by that ID does not exist.'
+    Error: 'Reservation by that ID does not exist.'
 }
 ```
 
@@ -107,30 +211,22 @@ See an individual lising by its' ID.
 **Code:**  `500 INTERNAL SERVER ERROR`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "There was a server error."
 }
 ```
 
-## Notes
+[Back To Top](#reservations)
 
-n/a
+## GET Reservations By Listing ID
 
-[Back To Top](#listings)
-
-# RV Owners
-
-Listing endpoints that only RV Owner users have access to.  RV Owner is a user account that has is_land_owner = false.
-
-
-## Show All Listings
-
-See all listings.
+Get an individual reservation by ID.
 
 ---
 
-**URL:** `/api/listings`
+**URL:** `/api/registrations/listing/:listing_id`
 
 **Method:** `GET`
 
@@ -138,83 +234,94 @@ See all listings.
 
 **Permissions required:** `YES`
 
-* RV User Only
+* Must be authenticated user
 
-**URL Params:**  `None`
+**URL Params:**  `listings_id = listings.id`
 
 **Data Constraints:** `None`
- 
 
-```
+```.javascript
 {}
 ```
 
 **Data Example:** `None`
-```
+
+```.javascript
 {}
 ```
 
 ## Success Response
 
-**Condition:**  If at least one listing exists and everything is OK.
+**Condition:**  If everything is OK.
 
 **Code:**  `200 OK`
 
 **Content Example:**
-```
+
+```.javascript
+
 [
      {
-        "id": 1,
-        "title": "test title 1",
-        "description": "this is a test description for 1",
-        "price_per_day": "24.99",
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
-        "latitude": null,
-        "longitude": null,
-        "owner": "testyMcTesty",
-        "land_owner": true,
-        "state": "Utah",
-        "state_abbrv": "UT"
-    },
-    {
-        "id": 2,
+        "reservation_id": 1,
+        "listing_id": 2,
+        "reservation_name": "testyMcTesty",
+        "state": "Michigan",
         "title": "test title 2",
         "description": "this is a test description for 2",
-        "price_per_day": "55.99",
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
-        "latitude": null,
-        "longitude": null,
-        "owner": "userMcUser",
-        "land_owner": false,
-        "state": "Florida",
-        "state_abbrv": "FL"
+        "reserved": true,
+        "reserved_from": "March 3, 2020",
+        "reserved_to": "March 7, 2020"
     },
     {
-        "id": 3,
-        "title": "test title 3",
-        "description": "this is a test description for 3",
-        "price_per_day": "99.99",
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
-        "latitude": null,
-        "longitude": null,
-        "owner": "johnnyDoeDoe",
-        "land_owner": false,
+        "reservation_id": 2,
+        "listing_id": 2,
+        "reservation_name": "userMcUser",
         "state": "Michigan",
-        "state_abbrv": "MI"
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "reserved": true,
+        "reserved_from": "March 23, 2020",
+        "reserved_to": "March 31, 2020"
     },
-    ...
+    {
+        "reservation_id": 5,
+        "listing_id": 2,
+        "reservation_name": "testyMcTesty",
+        "state": "Michigan",
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "reserved": true,
+        "reserved_from": "April 1, 2020",
+        "reserved_to": "April 10, 2020"
+    },
 ]
 ```
+
 ## Error Response
 
-**Condition:**  If is_land_owner = true, user is restricted from viewing content (Land Owners cannot view all listings).
+**Condition:**  If user is restricted from viewing content.
 
 **Code:**  `403 Forbidden`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: 'Logged in user has no access.'
+}
+```
+
+### OR
+
+**Condition:**  If reservation does not exists.
+
+**Code:**  `404 NOT FOUND`
+
+**Content Example:**
+
+```.javascript
+{
+    Error: 'Reservations with that Listing ID does not exist.'
 }
 ```
 
@@ -225,29 +332,22 @@ See all listings.
 **Code:**  `500 INTERNAL SERVER ERROR`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "There was a server error."
 }
 ```
 
-## Notes
+[Back To Top](#reservations)
 
-n/a
+## GET Reservations By Owner ID
 
-[Back To Top](#listings)
-
-# Land Owners
-
-## Show All Land Owner Listings
-
-Uses land owner id to query database and retrieve all listings associated with land owner account. 
-
-Land Owner is a user account that has is_land_owner = true.
+Get all reservations associated with Owner/User ID.
 
 ---
 
-**URL:** `/api/listings/owner/:landowner_id`
+**URL:** `/api/reservations/owner/:user_id`
 
 **Method:** `GET`
 
@@ -255,70 +355,93 @@ Land Owner is a user account that has is_land_owner = true.
 
 **Permissions required:** `YES`
 
-* Land Owners Only
+* Must be authenticated user
 
-**URL Params:**  `:landowner_id = landowner.id`
+**URL Params:**  `user_id = user.id`
 
 **Data Constraints:** `None`
- 
 
-```
+```.javascript
 {}
 ```
 
 **Data Example:** `None`
-```
+
+```.javascript
 {}
 ```
 
 ## Success Response
 
-**Condition:**  If land owner ID is correct and everything is OK.
+**Condition:**  If everything is OK.
 
 **Code:**  `200 OK`
 
 **Content Example:**
-```
+
+```.javascript
 [
     {
-        "id": 4,
-        "title": "test title 4",
-        "description": "this is a test description for 4",
-        "price_per_day": "25.99",
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
-        "latitude": null,
-        "longitude": null,
-        "owner": "testyMcTesty",
-        "land_owner": true,
-        "state": "North Carolina",
-        "state_abbrv": "NC"
+        "reservation_id": 1,
+        "listing_id": 2,
+        "reservation_name": "testyMcTesty",
+        "state": "Michigan",
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "reserved": true,
+        "reserved_from": "March 3, 2020",
+        "reserved_to": "March 7, 2020"
     },
     {
-        "id": 1,
-        "title": "test title 1",
-        "description": "this is a test description for 1",
-        "price_per_day": "24.99",
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
-        "latitude": null,
-        "longitude": null,
-        "owner": "testyMcTesty",
-        "land_owner": true,
-        "state": "Utah",
-        "state_abbrv": "UT"
+        "reservation_id": 2,
+        "listing_id": 2,
+        "reservation_name": "userMcUser",
+        "state": "Michigan",
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "reserved": true,
+        "reserved_from": "March 23, 2020",
+        "reserved_to": "March 31, 2020"
     },
-    ....
+    {
+        "reservation_id": 6,
+        "listing_id": 2,
+        "reservation_name": "userMcUser",
+        "state": "Michigan",
+        "title": "test title 2",
+        "description": "this is a test description for 2",
+        "reserved": true,
+        "reserved_from": "April 15, 2020",
+        "reserved_to": "April 20, 2020"
+    },
 ]
 ```
+
 ## Error Response
 
-**Condition:**  If is_land_owner = false, user is restricted from viewing content (Only land owner with correct id can view).
+**Condition:**  If user is restricted from viewing content.
 
 **Code:**  `403 Forbidden`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: 'Logged in user has no access.'
+}
+```
+
+### OR
+
+**Condition:**  If state does not exists.
+
+**Code:**  `404 NOT FOUND`
+
+**Content Example:**
+
+```.javascript
+{
+    Error: 'Reservation by that ID does not exist.'
 }
 ```
 
@@ -329,31 +452,22 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `500 INTERNAL SERVER ERROR`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "There was a server error."
 }
 ```
 
-## Notes
+[Back To Top](#reservations)
 
-n/a
+## POST Reservation To Listing
 
-[Back To Top](#listings)
-
-## Create Listing
-
-Land Owner can create a new listing. 
-
-State_id comes from state table which should pass the value from form. 
-
-See [States endpoint](./States.md#show-all-states) for more implementation info. 
-
-Land Owner is a user account that has is_land_owner = true.
+Add a reservation to a listing.
 
 ---
 
-**URL:** `/api/listings`
+**URL:** `/api/reservations/`
 
 **Method:** `POST`
 
@@ -361,88 +475,66 @@ Land Owner is a user account that has is_land_owner = true.
 
 **Permissions required:** `YES`
 
-* Land Owners Only
+* Must be authenticated user
 
 **URL Params:**  `None`
 
 **Data Constraints:** 
 
-**Required Fields:** state_id, landowner_id, title, description, price_per_day
-
-```
+```.javascript
 {
-    "state_id": "[integer, not nullable]",
-    "landowner_id": [integer, not nullable]",
-    "title": "[string max: 255 char not nullable]",
-    "description": "[text max: 500char, not nullable]",
-    "price_per_day": "[float (decimal), not nullable]",
-    "photo_url": "[text, nullable] ",
-    "longitude": "[text, nullable]",
-    "latitude": "[text, nullable]"
+    "user_id": "[integer, not nullable]",
+    "listings_id": [integer, not nullable]",
+    "is_reserved": "[boolean not nullable]",
+    "date_from": "[text 255 char, not nullable]",
+    "date_to": "[text 255 char, not nullable]",
 }
 ```
 
 **Data Example:** 
-```
-[
-    {
-        "id": 5,
-        "title": "title example 5",
-        "description": "title desc example 5",
-        "price_per_day": "58.00",
-        "user_id": 2,
-        "state_id": 25,
-        "photo_url": "asdasasasd",
-        "longitude": null,
-        "latitude": null
-    }
-]
+
+Date_From & Date_To can accept values from calendar frameworks
+
+```.javascript
+{
+     "user_id": 2,
+    "listings_id": 4,
+    "is_reserved": true,
+    "date_from": "March 4, 2020",
+    "date_to": "March 23, 2020",
+}
 ```
 
 ## Success Response
 
-**Condition:**  If land owner ID is correct and everything is OK.
+**Condition:**  If everything is OK.
 
-**Code:**  `201 CREATED`
+**Code:**  `200 OK`
 
 **Content Example:**
-```
+
+```.javascript
 [
     {
-        "id": 6,
-        "title": "title example 6",
-        "description": "title desc example 6",
-        "price_per_day": "58.00",
-        "user_id": 2,
-        "state_id": 25,
-        "photo_url": "asdasasasd",
-        "longitude": "40.7128 N",
-        "latitude": "74.0060 W"
+        "reservations_id": 10,
+        "is_reserved": true,
+        "date_from": "March 4, 2020",
+        "date_to": "March 23, 2020"
     }
 ]
 ```
+
 ## Error Response
 
-**Condition:**  If is_land_owner = false, user is restricted from creating a listing. (Only land owner can create a listing).
+**Condition:**  If user is restricted from viewing content.
 
 **Code:**  `403 Forbidden`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: 'Logged in user has no access.'
-}
-```
-### OR
-
-**Condition:**  If there is invalid data being passed.
-
-**Code:**  `400 BAD REQUEST`
-
-**Content Example:**
-```
-{
-    Message: "Invalid Entry. Please enter valid data."
 }
 ```
 
@@ -453,31 +545,28 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `500 INTERNAL SERVER ERROR`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "There was a server error."
 }
 ```
 
-## Notes
+[Back To Top](#reservations)
 
-n/a
+## UPDATE Reservation
 
-[Back To Top](#listings)
+Update/PUT reservation connected to a listing.
 
-## Update Listing
+Use only the data properties you wish to update.  
 
-Land Owner can update a listing. 
+For example, if you only wish to update the date_from, and date_to.
 
-Use only the data properties you wish to update.  For example, if you only wish to update the title, and state. Those would be the only
-data properties you would return to the database.
-
-
-Land Owner is a user account that has is_land_owner = true.
+Those would be the only data properties you would return to the database.
 
 ---
 
-**URL:** `/api/listings/:listing_id`
+**URL:** `/api/reservations/"reservation_id`
 
 **Method:** `PUT`
 
@@ -485,91 +574,59 @@ Land Owner is a user account that has is_land_owner = true.
 
 **Permissions required:** `YES`
 
-* Land Owners Only
+* Must be authenticated user
 
-**URL Params:**  `:listing_id =  listing.id`
+**URL Params:**  `:reservation_id = reservations.id`
 
 **Data Constraints:** 
 
-
-```
+```.javascript
 {
-    "state_id": "[integer, not nullable]",
-    "landowner_id": [integer, not nullable]",
-    "title": "[string max: 255 char not nullable]",
-    "description": "[text max: 500char, not nullable]",
-    "price_per_day": "[float (decimal), not nullable]",
-    "photo_url": "[text, nullable] ",
-    "longitude": "[text, nullable]",
-    "latitude": "[text, nullable]"
+    "user_id": "[integer, not nullable]",
+    "listings_id": [integer, not nullable]",
+    "is_reserved": "[boolean not nullable]",
+    "date_from": "[text 255 char, not nullable]",
+    "date_to": "[text 255 char, not nullable]",
 }
 ```
 
 **Data Example:** 
 
+Date_From & Date_To can accept values from calendar frameworks
 
-**ORIGINAL LISTING**
-
-```
-[
-    {
-        "id": 1,
-        "title": "no longer a test title",
-        "description": "this is a test description for 1",
-        "price_per_day": "24.99",
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
-        "latitude": null,
-        "longitude": null,
-        "owner": "testyMcTesty",
-        "land_owner": true,
-        "state": "Massachusetts",
-        "state_abbrv": "MA"
-    }
-]
-```
-
-
-**If I wanted to update the fields state_id and title, this would be my request.**
-
-```
+```.javascript
 {
-    "state_id": 34,
-    "title": "Rent This Land Here.",
+    "date_from": "March 4, 2020",
+    "date_to": "March 23, 2020",
 }
 ```
 
 ## Success Response
 
-**Condition:**  If land owner ID is correct and everything is OK.
+**Condition:**  If everything is OK.
 
-**Code:**  `201 CREATED`
+**Code:**  `200 OK`
 
 **Content Example:**
-```
+
+```.javascript
 [
     {
-        "id": 1,
-        "title": "Rent This Land Here",
-        "description": "this is a test description for 1",
-        "price_per_day": "24.99",
-        "photo_url": "https://unsplash.com/photos/-Avc2AiE1_Q",
-        "latitude": null,
-        "longitude": null,
-        "owner": "testyMcTesty",
-        "land_owner": true,
-        "state": "Massachusetts",
-        "state_abbrv": "MA"
+        "date_from": "March 31, 2020",
+        "date_to": "April 4, 2020",
     }
 ]
 ```
+
 ## Error Response
 
-**Condition:**  If is_land_owner = false, user is restricted from creating a listing. (Only land owner can update a listing).
+**Condition:**  If user is restricted from viewing content.
 
 **Code:**  `403 Forbidden`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: 'Logged in user has no access.'
 }
@@ -577,26 +634,15 @@ Land Owner is a user account that has is_land_owner = true.
 
 ### OR
 
-**Condition:**  If there is invalid data being passed.
+**Condition:**  If reservation does not exists.
 
-**Code:**  `400 BAD REQUEST`
-
-**Content Example:**
-```
-{
-    Message: "Invalid Entry. Please enter valid data."
-}
-```
-### OR
-
-**Condition:**  If listing doesn't exist.
-
-**Code:**  `404 LISTING DOESNT EXIST`
+**Code:**  `404 NOT FOUND`
 
 **Content Example:**
-```
+
+```.javascript
 {
-    Error: "Listing Does Not Exist."
+    Error: 'Reservation by that ID does not exist.'
 }
 ```
 
@@ -607,70 +653,69 @@ Land Owner is a user account that has is_land_owner = true.
 **Code:**  `500 INTERNAL SERVER ERROR`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "There was a server error."
 }
 ```
 
-## Notes
+[Back To Top](#reservations)
 
-n/a
+## DELETE Reservation
 
-[Back To Top](#listings)
-
-## Delete Listing
-
-Land Owner can delete a listing. 
-
-Land Owner is a user account that has is_land_owner = 1 (true).
+Delete reservation connected to a listing.
 
 ---
 
-**URL:** `/api/listings/:listing_id`
+**URL:** `/api/reservations/"reservation_id`
 
-**Method:** `DELETE`
+**Method:** `PUT`
 
 **Auth required:** `YES`
 
 **Permissions required:** `YES`
 
-* Land Owners Only
+* Must be authenticated user
 
-**URL Params:**  `:listing_id =  listing.id`
+**URL Params:**  `:reservation_id = reservations.id`
 
 **Data Constraints:** `None`
-```
+
+```.javascript
 {}
 ```
 
 **Data Example:** `None`
-```
+
+
+```.javascript
 {}
 ```
 
 ## Success Response
 
-**Condition:**  If listing ID is correct and everything is OK.
+**Condition:**  If everything is OK.
 
 **Code:**  `200 OK`
 
 **Content Example:**
-```
+
+```.javascript
 [
-    {
-        message: "Listing ID: 'listing_id' Deleted"
-    }
+    {message: `Reservation ID: 1 deleted.`}
 ]
 ```
+
 ## Error Response
 
-**Condition:**  If is_land_owner = false, user is restricted from creating a listing. (Only land owner can delete a listing).
+**Condition:**  If user is restricted from viewing content.
 
 **Code:**  `403 Forbidden`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: 'Logged in user has no access.'
 }
@@ -678,14 +723,15 @@ Land Owner is a user account that has is_land_owner = 1 (true).
 
 ### OR
 
-**Condition:**  If listing doesn't exist.
+**Condition:**  If reservation does not exists.
 
-**Code:**  `404 LISTING DOESNT EXIST`
+**Code:**  `404 NOT FOUND`
 
 **Content Example:**
-```
+
+```.javascript
 {
-    Error: "Listing Does Not Exist."
+    Error: 'Reservation by that ID does not exist.'
 }
 ```
 
@@ -696,14 +742,11 @@ Land Owner is a user account that has is_land_owner = 1 (true).
 **Code:**  `500 INTERNAL SERVER ERROR`
 
 **Content Example:**
-```
+
+```.javascript
 {
     Error: "There was a server error."
 }
 ```
 
-## Notes
-
-n/a
-
-[Back To Top](#listings)
+[Back To Top](#reservations)
