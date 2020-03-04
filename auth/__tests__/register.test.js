@@ -1,5 +1,4 @@
 const knexCleaner = require('knex-cleaner');
-const knex = require('knex');
 const request = require('supertest');
 const server = require('../../api/server');
 const db = require('../../data/connection');
@@ -74,8 +73,9 @@ describe("Register Route Testing", () => {
         describe('POST /register add new user', () => {
         
          
-            beforeEach(() => {
-                db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE')
+            beforeEach(async () => {
+                await db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE')
+                await db.seed.run()
             });
            
             

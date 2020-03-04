@@ -1,20 +1,21 @@
+
 const knexCleaner = require('knex-cleaner');
 const request = require('supertest');
 const server = require('../../api/server');
 const db = require('../../data/connection');
 
-const knex = require('knex')({
-    client: 'pg',
-    connection: {
-        host: 'postgresql://localhost',
-        database: 'rv-airbnbtesting'
-    }
-});
+// const knex = require('knex')({
+//     client: 'pg',
+//     connection: {
+//         host: 'postgresql://localhost',
+//         database: 'rv-airbnbtesting'
+//     }
+// });
 
-const options = {
-    mode: 'truncate',
-    restartIdentity: true
-}
+// const options = {
+//     mode: 'truncate',
+//     restartIdentity: true
+// }
 
 describe("Login Router", () => {
 
@@ -82,11 +83,14 @@ describe("Login Router", () => {
                     "is_land_owner": false
                 });
             });
+
+            afterEach(async () => {
+                await db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE')
+                await db.seed.run()
+            });
     
             afterEach(() => {
-              knexCleaner.clean(knex, options).then(function() {
-                        
-                  });
+                db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE')
             });
             
             it("returns 200 OK", async () => {
